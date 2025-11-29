@@ -37,7 +37,6 @@ void trouver_joueur(t_Plateau plateau, int *lig, int *col);
 void enregistrer_partie(t_Plateau plateau, char fichier[]);
 bool gagne(t_Plateau plateau);
 void deplacer(t_Plateau plateau, int lig, int col, char direction);
-void enregistrerDeplacements(t_tabDeplacement t, int nb, char fic[]);
 
 int main() {
     t_Plateau plateau = {{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}}; // Le plateau de 12x12
@@ -237,14 +236,6 @@ void enregistrer_partie(t_Plateau plateau, char fichier[]) {
         }
         fwrite(&finDeLigne, sizeof(char), 1, f);
     }
-    fclose(f);
-}
-
-void enregistrerDeplacements(t_tabDeplacement t, int nb, char fic[]){
-    FILE * f;
-
-    f = fopen(fic, "w");
-    fwrite(t,sizeof(char), nb, f);
     fclose(f);
 }
 

@@ -48,7 +48,7 @@ void enregistrer_partie(t_Plateau plateau, char fichier[]);
 bool gagne(t_Plateau plateau);
 char deplacer(t_Plateau plateau, int lig, int col, char direction);
 void annuler_dernier_deplacement(t_Plateau plateau, t_tabDeplacement tabDeplacement, int *nbDeplacement, int *coups);
-void enregistrer_deplacements(t_tabDeplacement tabDeplacement, int nbDeplacement, char fichier[]);
+void enregistrer_deplacements(t_tabDeplacement t, int nb, char fic[]);
 
 int main() {
     t_Plateau plateau;
@@ -77,7 +77,7 @@ int main() {
     afficher_plateau(plateau, fichier, zoom);
 
     /* Boucle de jeu */
-    while (!gagne(plateau) && !estAbandonee) {
+    while (!gagne(plateau) && !estAbandonee) { // Tant que la partie n'est pas gagnée et pas abandonnée
         afficher_entete(plateau, fichier, coups, zoom);
         afficher_plateau(plateau, fichier, zoom);
 
@@ -100,20 +100,20 @@ int main() {
             }
             break;
         case '+':
-            if (zoom < ZOOM_MAX) {
+            if (zoom < ZOOM_MAX) { // Zoom de 1 de plus si pas au max
                 zoom++;
             }
             break;
         case '-':
-            if (zoom > ZOOM_MIN) {
+            if (zoom > ZOOM_MIN) { // Dézoom de 1 de moins si pas au min
                 zoom--;
             }
             break;
-        case 'u':
+        case 'u': // Annule le dernier déplacement
             annuler_dernier_deplacement(plateau, tabDeplacement,
                                         &nbDeplacement, &coups);
             break;
-        case 'r':
+        case 'r': // Recommence la partie
             printf("Voulez-vous vraiment recommencer ? (o/n) : ");
             scanf("%c", &reponse);
             if (reponse == 'o') {
@@ -125,7 +125,7 @@ int main() {
                 afficher_plateau(plateau, fichier, zoom);
             }
             break;
-        case 'x':
+        case 'x': // Abandonne la partie
             estAbandonee = true;
             break;
         default:
@@ -141,8 +141,7 @@ int main() {
         if (reponse == 'o') {
             printf("Nom du fichier de sauvegarde (.dep) : ");
             scanf("%s", fichier);
-            enregistrer_deplacements(tabDeplacement,
-                                     nbDeplacement, fichier);
+            enregistrer_deplacements(tabDeplacement, nbDeplacement, fichier);
             printf("Partie sauvegardée.\n");
         }
     } else if (estAbandonee) {
@@ -160,8 +159,7 @@ int main() {
         if (reponse == 'o') {
             printf("Nom du fichier de sauvegarde (.dep) : ");
             scanf("%s", fichier);
-            enregistrer_deplacements(tabDeplacement,
-                                     nbDeplacement, fichier);
+            enregistrer_deplacements(tabDeplacement, nbDeplacement, fichier);
             printf("Partie sauvegardée.\n");
         }
     }
@@ -196,16 +194,16 @@ void afficher_entete(t_Plateau plateau, char fichier[], int coups, int zoom) {
 void afficher_plateau(t_Plateau plateau, char fichier[], int zoom) {
     char c;
     for (int i = 0; i < TAILLE; i++) {
-        for (int repVerticale = 0; repVerticale < zoom; repVerticale++) {
+        for (int repVerticale = 0; repVerticale < zoom; repVerticale++) { // Répétition verticale pour le zoom
             for (int j = 0; j < TAILLE; j++) {
                 c = plateau[i][j];
+                // Change pas le caractère quand le joueur ou une caisse est sur une cible
                 if (c == CHAR_CAISSE_CIBLE) {
                     c = CHAR_CAISSE;
                 } else if (c == CHAR_JOUEUR_CIBLE) {
                     c = CHAR_JOUEUR;
                 }
-                for (int repHorizontale = 0; repHorizontale < zoom;
-                     repHorizontale++) {
+                for (int repHorizontale = 0; repHorizontale < zoom; repHorizontale++) { // Répétition horizontale pour le zoom
                     printf("%c", c);
                 }
             }
@@ -272,8 +270,7 @@ void trouver_joueur(t_Plateau plateau, int *lig, int *col) {
 
     for (int i = 0; i < TAILLE; i++) {
         for (int j = 0; j < TAILLE; j++) {
-            if (plateau[i][j] == CHAR_JOUEUR ||
-                plateau[i][j] == CHAR_JOUEUR_CIBLE) {
+            if (plateau[i][j] == CHAR_JOUEUR || plateau[i][j] == CHAR_JOUEUR_CIBLE) { // Si le joueur est trouvé sur le plateau
                 *lig = i;
                 *col = j;
             }
@@ -288,12 +285,13 @@ void trouver_joueur(t_Plateau plateau, int *lig, int *col) {
  * @return void
  */
 void enregistrer_partie(t_Plateau plateau, char fichier[]) {
-    FILE *f = fopen(fichier, "w");
-    char finDeLigne = '\n';
+    FILE * f;
+    char finDeLigne ='\n';
 
-    for (int i = 0; i < TAILLE; i++) {
-        for (int j = 0; j < TAILLE; j++) {
-            fwrite(&plateau[i][j], sizeof(char), 1, f);
+    f = fopen(fichier, "w");
+    for (int ligne = 0 ; ligne < TAILLE ; ligne++) {
+        for (int colonne = 0 ; colonne < TAILLE ; colonne++) {
+            fwrite(&plateau[ligne][colonne], sizeof(char), 1, f);
         }
         fwrite(&finDeLigne, sizeof(char), 1, f);
     }
@@ -307,9 +305,11 @@ void enregistrer_partie(t_Plateau plateau, char fichier[]) {
  * @param fichier Le nom du fichier
  * @return void
  */
-void enregistrer_deplacements(t_tabDeplacement tabDeplacement, int nbDeplacement, char fichier[]) {
-    FILE *f = fopen(fichier, "w");
-    fwrite(tabDeplacement, sizeof(char), nbDeplacement, f);
+void enregistrer_deplacements(t_tabDeplacement t, int nb, char fic[]) {
+    FILE * f;
+
+    f = fopen(fic, "w");
+    fwrite(t,sizeof(char), nb, f);
     fclose(f);
 }
 
@@ -347,11 +347,11 @@ void annuler_dernier_deplacement(t_Plateau plateau, t_tabDeplacement tabDeplacem
     anciennePos = CHAR_JOUEUR;
     if (ancienneLigne >= 0 && ancienneLigne < TAILLE && ancienneColonne >= 0 && 
         ancienneColonne < TAILLE) {
-        if (plateau[ancienneLigne][ancienneColonne] == CHAR_CIBLE){
+        if (plateau[ancienneLigne][ancienneColonne] == CHAR_CIBLE) {
              anciennePos = CHAR_JOUEUR_CIBLE;
-            plateau[ancienneLigne][ancienneColonne] = anciennePos;
+             plateau[ancienneLigne][ancienneColonne] = anciennePos;
         } else {
-            plateau[ancienneLigne][ancienneColonne] = CHAR_JOUEUR;
+             plateau[ancienneLigne][ancienneColonne] = CHAR_JOUEUR;
         }
     }
 

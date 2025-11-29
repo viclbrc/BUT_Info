@@ -227,7 +227,7 @@ void trouver_joueur(t_Plateau plateau, int *lig, int *col) {
 */
 void enregistrer_partie(t_Plateau plateau, char fichier[]) {
     FILE * f;
-    char finDeLigne='\n';
+    char finDeLigne ='\n';
 
     f = fopen(fichier, "w");
     for (int ligne = 0 ; ligne < TAILLE ; ligne++) {

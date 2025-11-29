@@ -8,6 +8,10 @@
  * Programme du jeu du Sokoban.
  * But : pousser toutes les caisses ($) sur les cibles (.).
  * Le joueur contrôle Sokoban (@).
+ * 
+ * Fonctionnalités ajoutées :
+ * - Zoom avant/arrière (+ / -) entre 1 et 3.
+ * - Annulation du dernier déplacement (u).
  *
  * Conventions de codage respectées.
  */
@@ -341,9 +345,14 @@ void annuler_dernier_deplacement(t_Plateau plateau, t_tabDeplacement tabDeplacem
     ancienneLigne = lig - dLigne;
     ancienneColonne = col - dColonne;
     anciennePos = CHAR_JOUEUR;
-    if (ancienneLigne >= 0 && ancienneLigne < TAILLE && ancienneColonne >= 0 && ancienneColonne < TAILLE) {
-        if (plateau[ancienneLigne][ancienneColonne] == CHAR_CIBLE) anciennePos = CHAR_JOUEUR_CIBLE;
-        plateau[ancienneLigne][ancienneColonne] = anciennePos;
+    if (ancienneLigne >= 0 && ancienneLigne < TAILLE && ancienneColonne >= 0 && 
+        ancienneColonne < TAILLE) {
+        if (plateau[ancienneLigne][ancienneColonne] == CHAR_CIBLE){
+             anciennePos = CHAR_JOUEUR_CIBLE;
+            plateau[ancienneLigne][ancienneColonne] = anciennePos;
+        } else {
+            plateau[ancienneLigne][ancienneColonne] = CHAR_JOUEUR;
+        }
     }
 
     plateau[lig][col] = (plateau[lig][col] == CHAR_JOUEUR_CIBLE) ?
@@ -352,15 +361,16 @@ void annuler_dernier_deplacement(t_Plateau plateau, t_tabDeplacement tabDeplacem
     if (code >= 'A' && code <= 'Z') { // si c'est une majuscule = si caisse poussée
         ligneCaisse = lig + dLigne;
         colonneCaisse = col + dColonne;
-        if (ligneCaisse >= 0 && ligneCaisse < TAILLE && colonneCaisse >= 0 && colonneCaisse < TAILLE) {
-            enPos = plateau[ligneCaisse][colonneCaisse];
-            if (enPos == CHAR_CAISSE) {
-                plateau[lig][col] = CHAR_CAISSE;
-                plateau[ligneCaisse][colonneCaisse] = CHAR_VIDE;
-            } else if (enPos == CHAR_CAISSE_CIBLE) {
-                plateau[lig][col] = CHAR_CAISSE_CIBLE;
-                plateau[ligneCaisse][colonneCaisse] = CHAR_CIBLE;
-            }
+        if (ligneCaisse >= 0 && ligneCaisse < TAILLE && colonneCaisse >= 0 
+            && colonneCaisse < TAILLE) {
+                enPos = plateau[ligneCaisse][colonneCaisse];
+                if (enPos == CHAR_CAISSE) {
+                    plateau[lig][col] = CHAR_CAISSE;
+                    plateau[ligneCaisse][colonneCaisse] = CHAR_VIDE;
+                } else if (enPos == CHAR_CAISSE_CIBLE) {
+                    plateau[lig][col] = CHAR_CAISSE_CIBLE;
+                    plateau[ligneCaisse][colonneCaisse] = CHAR_CIBLE;
+                }
         }
     }
 
@@ -406,6 +416,7 @@ char deplacer(t_Plateau plateau, int lig, int col, char direction) {
     char codeSimple = '\0';
     char codePousse = '\0';
 
+    // Déterminer la direction de chaque touche
     if (direction == 'q') {
         dColonne = -1;
         codeSimple = 'g';
@@ -426,7 +437,7 @@ char deplacer(t_Plateau plateau, int lig, int col, char direction) {
         return '\0';
     }
 
-    newLig = lig + dLigne;
+    newLig = lig + dLigne; // Nouvelle position du joueur
     newCol = col + dColonne;
     cible = plateau[newLig][newCol];
     if (cible == CHAR_MUR) return '\0';
@@ -438,23 +449,19 @@ char deplacer(t_Plateau plateau, int lig, int col, char direction) {
     if (cible == CHAR_VIDE || cible == CHAR_CIBLE) {
         plateau[newLig][newCol] = (cible == CHAR_CIBLE) ?
                                   CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-        codeDeplacement = quitterCible ? (char)(codeSimple - 32) :
-                                   codeSimple;
+        codeDeplacement = quitterCible ? (char)(codeSimple - 32) : codeSimple;
     } else if (cible == CHAR_CAISSE || cible == CHAR_CAISSE_CIBLE) {
         ligneCaisse = newLig + dLigne;
         colonneCaisse = newCol + dColonne;
         cibleCaisse = plateau[ligneCaisse][colonneCaisse];
         if (cibleCaisse == CHAR_VIDE || cibleCaisse == CHAR_CIBLE) {
             plateau[ligneCaisse][colonneCaisse] =
-                (cibleCaisse == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE :
-                                              CHAR_CAISSE;
+                (cibleCaisse == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE : CHAR_CAISSE;
             plateau[newLig][newCol] = (cible == CHAR_CAISSE_CIBLE) ?
                                       CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-            codeDeplacement = quitterCible ? (char)(codePousse - 32) :
-                                       codePousse;
+            codeDeplacement = quitterCible ? (char)(codePousse - 32) : codePousse;
         } else {
-            plateau[lig][col] = quitterCible ?
-                                CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
+            plateau[lig][col] = quitterCible ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
             return '\0';
         }
     }

@@ -14,6 +14,8 @@
  * - Annulation du dernier déplacement (u).
  *
  * Conventions de codage respectées.
+ * 
+ * Niveaux supplémentaires créés par la communauté disponibles sur : https://github.com/NatinouTresor/Sokoban-Niveaux
  */
 
 #include <stdlib.h>

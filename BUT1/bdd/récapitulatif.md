@@ -55,11 +55,11 @@ Consignes :
 
 Classes possibles :
 
-    Tarifs : HC / HP / Base / HC virutelles
-    Fournisseurs : EDF / Enedis / Total / etc...
-    Date : Heure / Jour 
-    Saisons : Hiver / été
+[VOIR GOOGLE DOC](https://docs.google.com/document/d/14XC-e-eUu6hfFwpVwhKT3h8SHxgZh2wyH-vmg9-aezY/edit?tab=t.0)
 
+    Abonnements : HC / HP / Base / HC virtuelles / Saison
+    Fournisseurs : EDF / Enedis / Total / etc...
+    Contrat : Numéro / Date / 
 
 
 

@@ -60,7 +60,3 @@ Classes possibles :
     Abonnements : HC / HP / Base / HC virtuelles / Saison
     Fournisseurs : EDF / Enedis / Total / etc...
     Contrat : Numéro / Date / 
-
-
-
-

@@ -31,6 +31,7 @@ Création d'une base de données à partir des consignes suivantes :
 ### [SAÉ 1.05 Recueil des besoins](https://github.com/viclbrc/BUT_Info/tree/main/recueil_des_besoins)
 
 Réalisation d'un site internet responsive (groupe de 3) sur un pays. (Égypte)
+
 Comprend :
 - Page d'accueil
 - Page Lieu : Alexandrie
@@ -42,3 +43,4 @@ Outils utilisés :
 - Github
 - HTML
 - CSS
+- JavaScript

@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Poppins', Tahoma, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     line-height: 1.6;
     color: #d9d9d9;
     background-color: #222223;
@@ -55,10 +55,26 @@ header {
     text-align: center;
 }
 
-header h1 {
-    font-size: 2.5rem;
+header li {
+    font-family: "Clash Display";
+    font-size: 1.5em;
     margin-bottom: 0.5rem;
+    align-self: center;
+    justify-content: center;
 }
+
+header img:first-child {
+    height: 100px;
+}
+
+header img:nth-child(4) {
+    height: 70px;
+}
+
+header li a:hover {
+    
+}
+
 
 header p {
     font-size: 1.1rem;

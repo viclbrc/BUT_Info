@@ -8,15 +8,8 @@
     src: url('fonts/Poppins-Regular.ttf') format('truetype');
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Clash Display', Tahoma, sans-serif;
+    font-family: 'Poppins', Tahoma, sans-serif;
     line-height: 1.6;
     color: #d9d9d9;
     background-color: #222223;

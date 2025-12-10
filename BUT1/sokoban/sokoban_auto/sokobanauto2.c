@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 /* Déclaration des constantes */
 #define TAILLE 12
@@ -70,7 +71,7 @@ int main() {
         afficher_plateau(plateau, fichier);
         deplacer(plateau, &lig, &col, tabDeplacement[coups]);
         coups++;
-        usleep(500000);
+        usleep(700000); // Pause de 700 ms pour visualiser les déplacements
     }
 
     if (gagne(plateau)) {
@@ -163,15 +164,42 @@ bool gagne(t_Plateau plateau) {
 }
 
 char deplacer(t_Plateau plateau, int *lig, int *col, char direction) {
-    int dLigne = 0, dColonne = 0;
-    int newLig, newCol;
-    int ligneCaisse, colonneCaisse;
-    char cible, cibleCaisse;
+    int dLigne = 0;
+    int dColonne = 0;
+    int newLig;
+    int newCol;
+    int ligneCaisse;
+    int colonneCaisse;
+    char cible;
+    char cibleCaisse;
+    bool quitterCible;
 
-    if (direction == 'q') dColonne = -1;
-    else if (direction == 'z') dLigne = -1;
-    else if (direction == 's') dLigne = 1;
-    else if (direction == 'd') dColonne = 1;
+    if (direction == 'g') {
+        dColonne = -1;
+    } else if (direction == 'h') {
+        dLigne = -1;
+    } else if (direction == 'b') {
+        dLigne = 1;
+    }
+    else if (direction == 'd') {
+        dColonne = 1;
+    }
+    else if (direction == 'H') {
+        dLigne = -1;
+        ligneCaisse = -1;
+    }
+    else if (direction == 'B') {
+        dLigne = 1;
+        ligneCaisse = 1;
+    }
+    else if (direction == 'D') {
+        dColonne = 1;
+        colonneCaisse = 1;
+    }
+    else if (direction == 'G') {
+        dColonne = -1;
+        colonneCaisse = -1;
+    }
     else return '\0';
 
     newLig = *lig + dLigne;
@@ -179,7 +207,7 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction) {
     cible = plateau[newLig][newCol];
     if (cible == CHAR_MUR) return '\0';
 
-    bool quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);
+    quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);
     plateau[*lig][*col] = quitterCible ? CHAR_CIBLE : CHAR_VIDE;
 
     if (cible == CHAR_VIDE || cible == CHAR_CIBLE) {

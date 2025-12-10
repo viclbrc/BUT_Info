@@ -294,7 +294,3 @@ char deplacer(t_Plateau plateau, int lig, int col, char direction) {
 
     return codeDeplacement;
 }
-
-void usleep(){
-    
-}

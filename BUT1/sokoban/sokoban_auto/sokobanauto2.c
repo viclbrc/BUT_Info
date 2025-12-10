@@ -43,7 +43,7 @@ void charger_partie(t_Plateau plateau, char fichier[]);
 void charger_deplacements(t_tabDeplacement t, char fichier[], int * nb);
 void trouver_joueur(t_Plateau plateau, int *lig, int *col);
 bool gagne(t_Plateau plateau);
-char deplacer(t_Plateau plateau, int *lig, int *col, char direction);
+char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups);
 
 int main() {
     t_Plateau plateau;
@@ -51,7 +51,8 @@ int main() {
     char fichier[100];
     char fichierDep[100];
     int coups = 0;
-    int lig, col;
+    int lig;
+    int col;
     int nbDeplacement = 0;
 
     /* Demander les fichiers */
@@ -69,9 +70,8 @@ int main() {
     while (!gagne(plateau) && coups < nbDeplacement) {
         afficher_entete(plateau, fichier, coups);
         afficher_plateau(plateau, fichier);
-        deplacer(plateau, &lig, &col, tabDeplacement[coups]);
-        coups++;
-        usleep(700000); // Pause de 700 ms pour visualiser les déplacements
+        deplacer(plateau, &lig, &col, tabDeplacement[coups], &coups);
+        usleep(250000); // Pause de 250 ms
     }
 
     if (gagne(plateau)) {
@@ -163,7 +163,7 @@ bool gagne(t_Plateau plateau) {
     return true;
 }
 
-char deplacer(t_Plateau plateau, int *lig, int *col, char direction) {
+char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups) {
     int dLigne = 0;
     int dColonne = 0;
     int newLig;
@@ -176,35 +176,47 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction) {
 
     if (direction == 'g') {
         dColonne = -1;
+        (*coups)++;
     } else if (direction == 'h') {
         dLigne = -1;
+        (*coups)++;
     } else if (direction == 'b') {
         dLigne = 1;
-    }
-    else if (direction == 'd') {
+        (*coups)++;
+    } else if (direction == 'd') {
         dColonne = 1;
-    }
-    else if (direction == 'H') {
+        (*coups)++;
+    } else if (direction == 'H') {
         dLigne = -1;
         ligneCaisse = -1;
-    }
-    else if (direction == 'B') {
+        (*coups)++;
+    } else if (direction == 'B') {
         dLigne = 1;
         ligneCaisse = 1;
-    }
-    else if (direction == 'D') {
+        (*coups)++;
+    } else if (direction == 'D') {
         dColonne = 1;
         colonneCaisse = 1;
-    }
-    else if (direction == 'G') {
+        (*coups)++;
+    } else if (direction == 'G') {
         dColonne = -1;
         colonneCaisse = -1;
-    }
-    else return '\0';
+        (*coups)++;
+    } else return '\0';
 
     newLig = *lig + dLigne;
     newCol = *col + dColonne;
     cible = plateau[newLig][newCol];
+
+    if (direction == 'B' && cible != CHAR_CAISSE) {
+        return '\0';
+    } else if (direction == 'H' && cible != CHAR_CAISSE) {
+        return '\0';
+    } else if (direction == 'G' && cible != CHAR_CAISSE) {
+        return '\0';
+    } else if (direction == 'D' && cible != CHAR_CAISSE) {
+        return '\0';
+    }
     if (cible == CHAR_MUR) return '\0';
 
     quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);

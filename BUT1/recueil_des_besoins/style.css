@@ -145,6 +145,11 @@ section h2 {
     scroll-margin-top: 6em;
 }
 
+section figure img {
+    width:150px;
+    height: auto;
+}
+
 /* Si l'ancre cible la section (id placé sur <section>), applique aussi un décalage */
 section[id] {
     scroll-margin-top: 6em;

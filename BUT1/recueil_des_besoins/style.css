@@ -208,6 +208,11 @@ section h2 {
     scroll-margin-top: 6em;
 }
 
+section figure img {
+    width:150px;
+    height: auto;
+}
+
 section[id] {
     scroll-margin-top: 6em;
 }

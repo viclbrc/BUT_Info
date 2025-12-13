@@ -15,6 +15,18 @@ body {
     background-color: #222223;
 }
 
+:root {
+    /* Ajuster cette valeur si l'en-tête + nav occupent une hauteur différente */
+    /* Valeur par défaut raisonnable — ajustez si votre header/nav est plus grand */
+    --top-offset: 6rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Assure que les ancres (quelle que soit l'élément ciblé) tiennent compte de l'en-tête sticky */
+    scroll-padding-top: var(--top-offset);
+}
+
 nav {
     background-color: #222223;
     padding: 1rem 0;
@@ -134,6 +146,13 @@ section h2 {
     color: #fdc126;
     margin-bottom: 1rem;
     font-size: 1.8rem;
+    /* Evite que les titres ciblés par des ancres soient cachés derrière l'en-tête */
+    scroll-margin-top: var(--top-offset);
+}
+
+/* Si l'ancre cible la section (id placé sur <section>), applique aussi un décalage */
+section[id] {
+    scroll-margin-top: var(--top-offset);
 }
 
 aside {

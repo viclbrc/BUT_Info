@@ -15,40 +15,41 @@ body {
     background-color: #222223;
 }
 
+/*==================================================
+  ===================== Header =====================
+  ==================================================*/
+
 nav {
     background-color: #222223;
     padding: 1rem 0;
-    position: sticky;
-    top: 0;
 }
 
 nav img {
     height: 40px;
     vertical-align: middle;
-    margin-right: 1em;
+    margin-right: 10px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 1em;
-}
-
-nav > ul { 
-    display: flex;
-    gap: 0.5em;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
 }
 
 nav li {
     list-style-type: none; 
     text-align: center;
     position: relative;
+    margin: 0;
 }
 
 nav a { 
     display: block;
-    width: 7em;
+    width: 6em;
     border: 1px solid #222223;
     color: #fdc126;
     background-color: #222223; 
@@ -65,7 +66,7 @@ nav li ul {
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 0.35em 0.6em;
+    padding: 0.3em 0.5em;
     width: auto;
     text-align: center;
     box-sizing: border-box;
@@ -76,6 +77,8 @@ nav li ul a {
     width: 7em;
     text-align: center;
     padding: 0.4em 0.6em;
+    border-color: #fdc126;
+    line-height: 25px;
 }
 
 nav li:hover > ul { 
@@ -87,7 +90,6 @@ header {
     color: #fdc126;
     padding: 1em 1em;
     text-align: center;
-    top: 0;
     border-bottom: 1px solid #fdc126;
 }
 
@@ -113,8 +115,11 @@ header li a:hover {
 
 header p {
     font-size: 1.1rem;
-    opacity: 0.9;
 }
+
+/*================================================
+  ===================== Main =====================
+  ================================================*/
 
 main {
     max-width: 1200px;
@@ -122,18 +127,63 @@ main {
     padding: 0 2rem;
 }
 
+figure {
+    text-align: center;
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: #d9d9d9;
+}
+
+div p {
+    text-align: center;
+    color: #d9d9d9;
+}
+
 section {
     background-color: #222223;
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#oeuvres ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+}
+
+section figure {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    padding: 3em;
+}
+
+section figcaption {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    color: #d9d9d9;
+}
+
+section ul {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+
+#index h2 {
+    text-align: center;
 }
 
 section h2 {
-    color: #fdc126;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+    color: #d9d9d9;
+    font-size: 1.8em;
 }
 
 aside {
@@ -175,6 +225,10 @@ footer {
     margin-top: 3rem;
 }
 
+/*==================================================
+  ===================== Footer =====================
+  ==================================================*/
+
 footer ul { 
     list-style: none;
     color: #fdc126;
@@ -186,10 +240,12 @@ footer ul {
 }
 
 footer a:link,
-footer a:visited,
-footer a:hover,
-footer a:active {
+footer a:visited {
     color: #d9d9d9;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
+footer a:hover,
+footer a:active {
+    text-decoration: underline;
+}

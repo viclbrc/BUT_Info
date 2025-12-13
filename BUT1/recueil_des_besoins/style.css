@@ -16,8 +16,6 @@ body {
 }
 
 :root {
-    /* Ajuster cette valeur si l'en-tête + nav occupent une hauteur différente */
-    /* Valeur par défaut raisonnable — ajustez si votre header/nav est plus grand */
     --top-offset: 6rem;
 }
 

@@ -21,7 +21,6 @@ body {
 
 html {
     scroll-behavior: smooth;
-    /* Assure que les ancres (quelle que soit l'élément ciblé) tiennent compte de l'en-tête sticky */
     scroll-padding-top: var(--top-offset);
 }
 
@@ -183,8 +182,21 @@ section ul {
 }
 
 
+#index figure {
+    width: 300px;
+    height: auto;
+}
+
 #index h2 {
     text-align: center;
+}
+
+#index h2,
+#lieux h2,
+#histoire h2,
+#personnages h2,
+#oeuvres h2 {
+    color: #d9d9d9;
 }
 
 section h2 {
@@ -193,11 +205,9 @@ section h2 {
     color: #fdc126;
     margin-bottom: 1rem;
     font-size: 1.8rem;
-    /* Evite que les titres ciblés par des ancres soient cachés derrière l'en-tête */
     scroll-margin-top: 6em;
 }
 
-/* Si l'ancre cible la section (id placé sur <section>), applique aussi un décalage */
 section[id] {
     scroll-margin-top: 6em;
 }

@@ -15,9 +15,6 @@ body {
     background-color: #222223;
 }
 
-:root {
-    --top-offset: 6rem;
-}
 
 html {
     scroll-behavior: smooth;
@@ -145,12 +142,12 @@ section h2 {
     margin-bottom: 1rem;
     font-size: 1.8rem;
     /* Evite que les titres ciblés par des ancres soient cachés derrière l'en-tête */
-    scroll-margin-top: var(--top-offset);
+    scroll-margin-top: 6em;
 }
 
 /* Si l'ancre cible la section (id placé sur <section>), applique aussi un décalage */
 section[id] {
-    scroll-margin-top: var(--top-offset);
+    scroll-margin-top: 6em;
 }
 
 aside {

@@ -105,12 +105,15 @@ void afficher_plateau(t_Plateau plateau, char fichier[]) {
     }
 }
 
+
+
 void charger_partie(t_Plateau plateau, char fichier[]){
     FILE * f;
     char finDeLigne;
+
     f = fopen(fichier, "r");
     if (f==NULL){
-        printf("ERREUR SUR FICHIER\n");
+        printf("ERREUR SUR FICHIER");
         exit(EXIT_FAILURE);
     } else {
         for (int ligne=0 ; ligne<TAILLE ; ligne++){
@@ -127,18 +130,25 @@ void charger_deplacements(t_tabDeplacement t, char fichier[], int * nb){
     FILE * f;
     char dep;
     *nb = 0;
+
     f = fopen(fichier, "r");
     if (f==NULL){
         printf("FICHIER NON TROUVE\n");
-        exit(EXIT_FAILURE);
     } else {
-        while (fread(&dep, sizeof(char), 1, f) == 1) {
-            t[*nb] = dep;
-            (*nb)++;
+        fread(&dep, sizeof(char), 1, f);
+        if (feof(f)){
+            printf("FICHIER VIDE\n");
+        } else {
+            while (!feof(f)){
+                t[*nb] = dep;
+                (*nb)++;
+                fread(&dep, sizeof(char), 1, f);
+            }
         }
-        fclose(f);
     }
+    fclose(f);
 }
+
 
 void trouver_joueur(t_Plateau plateau, int *lig, int *col) {
     for (int i = 0; i < TAILLE; i++) {

@@ -30,9 +30,9 @@ header nav {
     padding: 1rem 0;
 }
 
-header > nav {
-    position : sticky;
-    top : 0;
+header>nav {
+    position: sticky;
+    top: 0;
     z-index: 1000;
 }
 
@@ -53,25 +53,25 @@ header nav ul {
 }
 
 header nav li {
-    list-style-type: none; 
+    list-style-type: none;
     text-align: center;
     position: relative;
     margin: 0;
 }
 
-header nav a { 
+header nav a {
     display: block;
     width: 6em;
     border: 1px solid #222223;
     color: #fdc126;
-    background-color: #222223; 
+    background-color: #222223;
     text-decoration: none;
     border-radius: 8px;
 }
 
-header nav a:hover { 
+header nav a:hover {
     color: #fdc126;
-    background-color: #222223; 
+    background-color: #222223;
 }
 
 header nav li ul {
@@ -94,8 +94,8 @@ header nav li ul a {
     line-height: 25px;
 }
 
-nav li:hover > ul { 
-    display: block; 
+nav li:hover>ul {
+    display: block;
 }
 
 header {
@@ -143,12 +143,12 @@ main {
 }
 
 main nav {
-    padding : 1em;
-    background-color : #222223;
-    margin : 1em;
-    border-radius : 8px;
+    padding: 1em;
+    background-color: #222223;
+    margin: 1em;
+    border-radius: 8px;
     display: flex;
-    justify-content : center;
+    justify-content: center;
 }
 
 main nav ul {
@@ -164,11 +164,12 @@ main nav ul {
 main nav li a:link,
 main nav li a:visited {
     display: block;
-    width: 8em;
+    width: 10em;
+    height: 4em;
     border: 1px solid #fdc126;
     border-radius: 8px;
     color: #fdc126;
-    background-color: #222223; 
+    background-color: #222223;
     text-decoration: none;
     padding: 0.5em 1em;
 }
@@ -190,15 +191,15 @@ h1 {
     color: #d9d9d9;
 }
 
-main > div {
-    display: flex ;
+main>div {
+    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
 }
 
-main > div ul{
+main>div ul {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
@@ -219,35 +220,35 @@ section {
     box-shadow: 1 1 10px rgba(0, 0, 0, 0.5);
 }
 
-section > nav{
-    position:static;
+section>nav {
+    position: static;
 }
 
-section > div{
-    display : flex;
-    flex-direction : row;
-    flex-wrap : wrap;
+section>div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 2rem;
 }
 
-section > div > figure {
+section>div>figure {
     flex: 0 0 auto;
     margin: 0;
 }
 
-section > div > div{
+section>div>div {
     display: flex;
-    flex-direction : column;
-    flex-wrap : wrap;
-    justify-content : flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     flex: 1;
     min-width: 300px;
 }
 
 #oeuvres ul,
 #lieux ul,
-#personnages ul{
+#personnages ul {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -314,7 +315,9 @@ section ul {
     list-style-type: none;
     margin-left: 20px;
 }
-
+section p{
+    text-align: justify;
+}
 
 #index {
     display: flex;
@@ -355,11 +358,6 @@ section figure img {
     display: block;
 }
 
-#rivalite img{
-    position:relative;
-    z-index: 1;
-    transform: rotate(270deg);
-}
 
 section[id] {
     scroll-margin-top: 4em;
@@ -389,7 +387,7 @@ aside a:hover {
 }
 
 
-hr{
+hr {
     height: 2px;
     background-color: #fdc126;
     border-color: #fdc126;
@@ -408,7 +406,7 @@ footer {
   ===================== Footer =====================
   ==================================================*/
 
-footer ul { 
+footer ul {
     list-style: none;
     color: #fdc126;
     display: flex;

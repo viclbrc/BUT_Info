@@ -4,30 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/Flags-Egypt-Flag.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>Les pyramides d’Égypte</h1>
     <header>
-        <img src="images/logo.png" alt="logo" title="logo">
-        <ul>
-            <li><a href="les lieux">Les lieux</a></li>
-            <img src="images/pyraheader.png" alt="Pyramide logo" title="Pyramide logo">
-            <li><a href="Les personnages">Les personnages</a></li>
-            <li><a href="Les oeuvres">Les oeuvres</a></li>
-        </ul>
-    </header> 
+        <nav>
+            <ul>
+                <img src="images/ministere.png">
+                <li>Tourisme en Égypte</li>
+                <li><a href="index.html">Accueil</a></li>
+                <img src="/BUT1/recueil_des_besoins/images/pyramides.png">
+                <li><a href="alexandrie.html">Lieux</a>
+                    <ul>
+                        <li><a href="alexandrie.html">Alexandrie</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Oeuvres</a>
+                    <ul>
+                        <li><a href="gizeh.html">Pyramides de Gizeh</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Personnages</a>
+                    <ul>
+                        <li><a href="saladin.html">Saladin</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <main>
-        <img src="images/Pointeurs.jpg" usemap="#image-map">
-
+        <figure id="pointeurs">
+            <img src="images/pointeurs.jpg" usemap="#image-map">
+            <figcaption>Cliquez sur les Pyramides pour accéder à leur description</figcaption>
+        </figure>
         <map name="image-map">
             <area target="" alt="Mykérinos" title="Pyramide de Mykérinos" href="#Mykérinos" coords="82,90,90,101,79,108,72,98" shape="poly">
             <area target="" alt="Khéphren" title="Pyramide de Khéphren" href="#Khéphren" coords="125,78,110,89,122,102,138,91" shape="poly">
-            <area target="Khéops" alt="Khéops" title="Pyramide de Khéops" href="#Khéops" coords="168,77,155,90,169,105,185,91" shape="poly">
+            <area target="" alt="Khéops" title="Pyramide de Khéops" href="#Khéops" coords="168,77,155,90,169,105,185,91" shape="poly">
         </map>
-        <section>
+
+        <section id="index">
             <h1>Les pyramides d’Égypte</h1>
             <figure>
-                <img src="images/pyramide.jpg" alt="Pyramdies" title="Pyramides">
+                <img src="images/pyramide.jpg" alt="Pyramides" title="Pyramides">
                 <figcaption>Les Pyramides de Gizeh</figcaption>
             </figure>
                 
@@ -37,7 +57,8 @@
                 de la civilisation égyptienne antique.
             </p>
         </section>
-        <section>
+
+        <section id="creation">
             <h2>Date de création</h2>
                 <figure>
                     <img src="images/datecréation.png" alt="Frise chronologique" title="Frise chronologique">
@@ -81,7 +102,7 @@
             </article>
         </section>
 
-        <section>
+        <section id="histoire">
             <h2>Histoire et pharaons</h2>
                 <figure>
                     <img src="images/phaarons.jpg" alt="Pharaons" title="Pharaons">
@@ -95,7 +116,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="pyramides">
             <h2>Fonction des pyramides</h2>
                 <figure>
                     <img src="images/fonctionpyra.jpg" alt="Fonction Pyramide" title="Fonction Pyramide">
@@ -109,7 +130,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="outils">
             <h2>Techniques de construction et outils</h2>
                 <figure>
                     <img src="images/outils.jpg" alt="Outils" title="Outils">
@@ -125,7 +146,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="sphinx">
             <h2>Le Sphinx de Gizeh</h2>
                 <figure>
                     <img src="images/Sphinx.jpg" alt="Sphinx" title="Sphinx">
@@ -140,7 +161,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="unesco">
             <h2>Classement UNESCO</h2>
                 <figure>
                     <img src="images/unesco.png" alt="UNESCO" title="UNESCO">
@@ -154,7 +175,7 @@
             </p>
         </section>
 
-        <section>
+        <section id="musee">
             <h2>Le Grand Musée Égyptien</h2>
                 <figure>
                     <img src="images/Grandmusee.jpg" alt="Grand Musée Egyptien" title="Grand Musée Egyptien">

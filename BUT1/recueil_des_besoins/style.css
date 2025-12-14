@@ -254,7 +254,7 @@ section>div>div {
     min-width: 300px;
 }
 
-#intro p{
+#intro p {
     text-align: center;
     margin-bottom: 2rem;
 }
@@ -351,7 +351,7 @@ section>div>div {
     border-radius: 8px;
     padding: 1em;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     gap: 1rem;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -368,7 +368,8 @@ section ul {
     list-style-type: none;
     margin-left: 20px;
 }
-section p{
+
+section p {
     text-align: justify;
 }
 

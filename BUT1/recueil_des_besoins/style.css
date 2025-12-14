@@ -273,24 +273,20 @@ section>div>div {
 #portA img,
 #museeA img,
 #jardinsA img,
-#catacombesA img{
+#catacombesA img,
+#histoire img,
+#pyramides img,
+#sphinx img,
+#unesco img, 
+#musee img {
     width: 400px;
     height: auto;
     border-radius: 8px;
 }
 
-
-
 #oeuvres ul,
 #lieux ul,
-#personnages ul,
-#creation ul,
-#histoire ul,
-#pyramides ul,
-#outils ul,
-#sphinx ul,
-#unesco ul,
-#musee ul {
+#personnages ul {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -301,27 +297,13 @@ section>div>div {
 
 #oeuvres ul li,
 #lieux ul li,
-#personnages ul li,
-#creation ul li,
-#histoire ul li,
-#pyramides ul li,
-#outils ul li,
-#sphinx ul li,
-#unesco ul li,
-#musee ul li {
+#personnages ul li {
     flex: 0 0 auto;
 }
 
 #oeuvres figure,
 #lieux figure,
-#personnages figure,
-#creation figure,
-#histoire figure,
-#pyramides figure,
-#outils figure,
-#sphinx figure,
-#unesco figure,
-#musee figure {
+#personnages figure {
     width: 200px;
     height: 280px;
     padding: 1rem;
@@ -335,6 +317,7 @@ section>div>div {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+#infos figure img,
 #oeuvres figure img,
 #lieux figure img,
 #personnages figure img,
@@ -344,13 +327,20 @@ section>div>div {
 #outils figure img,
 #sphinx figure img,
 #unesco figure img,
-#musee figure img {
+#musee figure img,
+#histoireA figure img,
+#moderneA figure img,
+#phareA figure img,
+#portA figure img,
+#museeA figure img,
+#jardinsA figure img{
     width: 100%;
     height: 200px;
     object-fit: contain;
     border-radius: 4px;
 }
 
+#infos figcaption,
 #oeuvres figcaption,
 #lieux figcaption,
 #personnages figcaption,
@@ -432,6 +422,7 @@ section figure img {
     width: 100%;
     height: auto;
     display: block;
+
 }
 
 

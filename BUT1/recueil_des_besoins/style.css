@@ -164,7 +164,7 @@ main nav ul {
 main nav li {
     list-style-type: none;
     text-align: center;
-    position: relative;
+    position: static;
     margin: 0;
     padding: 0.5em;
 }
@@ -259,6 +259,28 @@ section>div>div {
     margin-bottom: 2rem;
 }
 
+#description img,
+#realisation img, 
+#outil img,
+#philosophie img,
+#rivalite img,
+#mausolee img,
+#vueParArabe img,
+#croisade img,
+#histoireA img,
+#moderneA img,
+#phareA img,
+#portA img,
+#museeA img,
+#jardinsA img,
+#catacombesA img{
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+
 #oeuvres ul,
 #lieux ul,
 #personnages ul,
@@ -345,7 +367,7 @@ section>div>div {
     line-height: 1.3;
 }
 
-#catacombes figure {
+#catacombesA figure {
     width: 200px;
     height: auto;
     border-radius: 8px;

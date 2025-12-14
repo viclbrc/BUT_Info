@@ -261,7 +261,14 @@ section>div>div {
 
 #oeuvres ul,
 #lieux ul,
-#personnages ul {
+#personnages ul,
+#creation ul,
+#histoire ul,
+#pyramides ul,
+#outils ul,
+#sphinx ul,
+#unesco ul,
+#musee ul {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -272,13 +279,27 @@ section>div>div {
 
 #oeuvres ul li,
 #lieux ul li,
-#personnages ul li {
+#personnages ul li,
+#creation ul li,
+#histoire ul li,
+#pyramides ul li,
+#outils ul li,
+#sphinx ul li,
+#unesco ul li,
+#musee ul li {
     flex: 0 0 auto;
 }
 
 #oeuvres figure,
 #lieux figure,
-#personnages figure {
+#personnages figure,
+#creation figure,
+#histoire figure,
+#pyramides figure,
+#outils figure,
+#sphinx figure,
+#unesco figure,
+#musee figure {
     width: 200px;
     height: 280px;
     padding: 1rem;
@@ -294,7 +315,14 @@ section>div>div {
 
 #oeuvres figure img,
 #lieux figure img,
-#personnages figure img {
+#personnages figure img,
+#creation figure img,
+#histoire figure img,
+#pyramides figure img,
+#outils figure img,
+#sphinx figure img,
+#unesco figure img,
+#musee figure img {
     width: 100%;
     height: 200px;
     object-fit: contain;
@@ -303,7 +331,14 @@ section>div>div {
 
 #oeuvres figcaption,
 #lieux figcaption,
-#personnages figcaption {
+#personnages figcaption,
+#creation figcaption,
+#histoire figcaption,
+#pyramides figcaption,
+#outils figcaption,
+#sphinx figcaption,
+#unesco figcaption,
+#musee figcaption {
     font-size: 0.85em;
     text-align: center;
     margin-top: 0.5rem;

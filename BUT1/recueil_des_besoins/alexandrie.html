@@ -1,28 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Alexandrie</h1>
     <header>
-        <img src="images/logo.png" alt="logo" title="logo">
-        <ul>
-            <li><a href="les lieux">Les lieux</a></li>
-            <img src="images/pyraheader.png" alt="Pyramide logo" title="Pyramide logo">
-            <li><a href="Les personnages">Les personnages</a></li>
-            <li><a href="Les oeuvres">Les oeuvres</a></li>
-        </ul>
+        <nav>
+            <ul>
+                <img src="images/ministere.png">
+                <li>Tourisme en Égypte</li>
+                <li><a href="index.html">Accueil</a></li>
+                <img src="/BUT1/recueil_des_besoins/images/pyramides.png">
+                <li><a href="alexandrie.html">Lieux</a>
+                    <ul>
+                        <li><a href="alexandrie.html">Alexandrie</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Oeuvres</a>
+                    <ul>
+                        <li><a href="gizeh.html">Pyramides de Gizeh</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Personnages</a>
+                    <ul>
+                        <li><a href="saladin.html">Saladin</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218344.6476010927!2d29.829913200474483!3d31.230836945908884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c49126710fd3%3A0xb4e0cda629ee6bb9!2sAlexandrie%2C%20%C3%89gypte!5e0!3m2!1sfr!2sfr!4v1765676971889!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
     <main>
-        <article>
+        <h1>Alexandrie</h1>
+        <div>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218344.6476010927!2d29.829913200474483!3d31.230836945908884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c49126710fd3%3A0xb4e0cda629ee6bb9!2sAlexandrie%2C%20%C3%89gypte!5e0!3m2!1sfr!2sfr!4v1765676971889!5m2!1sfr!2sfr"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <nav>
+                <ul>
+                    <li><a href="#histoire">L'histoire d'Alexandrie</a></li>
+                    <li><a href="#moderne">Alexandrie aujourd’hui</a></li>
+                    <li><a href="#phare">Le phare d'Alexandrie</a></li>
+                    <li><a href="#port">Le port d'Alexandrie</a></li>
+                    <li><a href="#musee">Le musée d'Alexandrie</a></li>
+                    <li><a href="#jardins">Les jardins d'Alexandrie</a></li>
+                    <li><a href="#catacombes">Les catacombes d'Alexandrie</a></li>
+                </ul>
+            </nav>
+        </div>
+        <article id="histoire">
             <h2>L'histoire d'Alexandrie</h2>
             <p>
-                Fondée en -331 av. J.-C. par Alexandre le Grand, Alexandrie fut conçue comme un pont entre la Grèce et l’Égypte. Très vite, elle devint un centre intellectuel et commercial majeur du monde antique. La ville accueillait la célèbre Bibliothèque d’Alexandrie et le Musée, hauts lieux du savoir et de la philosophie. À son apogée, Alexandrie était la plus grande métropole du bassin méditerranéen, réputée pour son ouverture, sa diversité et sa richesse culturelle. 
-                Au fil des siècles, la ville connut des périodes de déclin et de renaissance, notamment sous l’Empire romain, puis ottoman, avant de devenir un port cosmopolite durant le XIXe et le XXe siècle, symbole de modernité et de mélange des cultures. 
+                Fondée en -331 av. J.-C. par Alexandre le Grand, Alexandrie fut conçue comme un pont entre la Grèce et
+                l’Égypte. Très vite, elle devint un centre intellectuel et commercial majeur du monde antique. La ville
+                accueillait la célèbre Bibliothèque d’Alexandrie et le Musée, hauts lieux du savoir et de la
+                philosophie. À son apogée, Alexandrie était la plus grande métropole du bassin méditerranéen, réputée
+                pour son ouverture, sa diversité et sa richesse culturelle.
+                Au fil des siècles, la ville connut des périodes de déclin et de renaissance, notamment sous l’Empire
+                romain, puis ottoman, avant de devenir un port cosmopolite durant le XIXe et le XXe siècle, symbole de
+                modernité et de mélange des cultures.
             </p>
             <figure>
                 <img src="images/ancien.jpg" alt="Ancien Alexandrie" title="Ancien Alexandrie">
@@ -31,88 +73,116 @@
             <h3>Les dates importante</h3>
             <ul>
                 <li>-331 av. J.-C.</li>
-                    <details>Fondation de la ville par Alexandre le Grand. </details>
+                <details>Fondation de la ville par Alexandre le Grand. </details>
                 <li>IIIe siècle av. J.-C.</li>
-                    <details>Construction du Phare d’Alexandrie, l’une des Sept Merveilles du Monde antique.</details>
+                <details>Construction du Phare d’Alexandrie, l’une des Sept Merveilles du Monde antique.</details>
                 <li>48 av.</li>
-                    <details>Incendie de la Bibliothèque d’Alexandrie lors de la guerre entre César et Pompée.</details>
+                <details>Incendie de la Bibliothèque d’Alexandrie lors de la guerre entre César et Pompée.</details>
                 <li>641 apr. J.-C.</li>
-                    <details>Conquête arabe, marquant un tournant culturel et religieux majeur.</details>
+                <details>Conquête arabe, marquant un tournant culturel et religieux majeur.</details>
                 <li>1798</li>
-                    <details>Campagne d’Égypte menée par Napoléon Bonaparte.</details>
+                <details>Campagne d’Égypte menée par Napoléon Bonaparte.</details>
                 <li>1952</li>
-                    <details>Révolution égyptienne — Alexandrie devient un pôle industriel et portuaire moderne.</details>
+                <details>Révolution égyptienne — Alexandrie devient un pôle industriel et portuaire moderne.</details>
             </ul>
         </article>
-        <article>
+        <article id="moderne">
             <h2>L’Alexandrie moderne et sa population</h2>
             <figure>
                 <img src="images/nouveau.jpg" alt="Nouveau Alexandrie" title="Nouveau Alexandrie">
                 <figcaption>Le Nouveau Alexandrie</figcaption>
             </figure>
             <p>
-                Aujourd’hui, Alexandrie est la deuxième plus grande ville d’Égypte, avec une population dépassant les 5 millions d’habitants. Son port, le plus grand du pays, joue un rôle crucial dans le commerce méditerranéen. La ville conserve un charme unique, entre héritage antique, influences coloniales et modernité égyptienne. On y trouve une population cosmopolite, issue de diverses origines arabes, grecques, arméniennes et italiennes, reflet de son histoire ouverte sur le monde. 
+                Aujourd’hui, Alexandrie est la deuxième plus grande ville d’Égypte, avec une population dépassant les 5
+                millions d’habitants. Son port, le plus grand du pays, joue un rôle crucial dans le commerce
+                méditerranéen. La ville conserve un charme unique, entre héritage antique, influences coloniales et
+                modernité égyptienne. On y trouve une population cosmopolite, issue de diverses origines arabes,
+                grecques, arméniennes et italiennes, reflet de son histoire ouverte sur le monde.
             </p>
         </article>
         <section>
-            <article>
+            <article id="phare">
                 <h2>Le Phare d'Alexandrie</h2>
                 <figure>
                     <img src="images/phare.jpg" alt="Phare d'Alexandrie" title="Phare d'Alexandrie">
                     <figcaption>Phare d'Alexandrie</figcaption>
                 </figure>
                 <p>
-                    Érigé sur l’île de Pharos au IIIe siècle av. J.-C. sous le règne de Ptolémée II Philadelphe, le Phare d’Alexandrie atteignait près de 120 mètres de haut. Construit par l’architecte Sostrate de Cnide, il guidait les marins entrant dans le port grâce à un feu visible à plusieurs kilomètres. Considéré comme un chef-d’œuvre d’ingénierie antique, il fut détruit par plusieurs tremblements de terre entre le XIVe et le XVe siècle. Aujourd’hui, ses vestiges reposent sous la mer, au large de la citadelle de Qaitbay, bâtie à son emplacement au XVe siècle. 
+                    Érigé sur l’île de Pharos au IIIe siècle av. J.-C. sous le règne de Ptolémée II Philadelphe, le
+                    Phare d’Alexandrie atteignait près de 120 mètres de haut. Construit par l’architecte Sostrate de
+                    Cnide, il guidait les marins entrant dans le port grâce à un feu visible à plusieurs kilomètres.
+                    Considéré comme un chef-d’œuvre d’ingénierie antique, il fut détruit par plusieurs tremblements de
+                    terre entre le XIVe et le XVe siècle. Aujourd’hui, ses vestiges reposent sous la mer, au large de la
+                    citadelle de Qaitbay, bâtie à son emplacement au XVe siècle.
                 </p>
             </article>
-            <article>
+            <article id="port">
                 <h2>Le Port d'Alexandrie</h2>
                 <figure>
                     <img src="images/port.jpg" alt="Port d'Alexandrie" title="Port d'Alexandrie">
                     <figcaption>Port d'Alexandrie</figcaption>
                 </figure>
                 <p>
-                    Le Port d’Alexandrie est depuis l’Antiquité la porte maritime de l’Égypte sur la Méditerranée. Il se divise aujourd’hui en deux zones principales : le port oriental, plus ancien, et le port occidental, moderne et industriel. Ce dernier gère la majorité du trafic maritime égyptien. Autrefois point de départ des navires grecs et romains, le port reste un symbole du dynamisme économique et commercial de la ville. 
+                    Le Port d’Alexandrie est depuis l’Antiquité la porte maritime de l’Égypte sur la Méditerranée. Il se
+                    divise aujourd’hui en deux zones principales : le port oriental, plus ancien, et le port occidental,
+                    moderne et industriel. Ce dernier gère la majorité du trafic maritime égyptien. Autrefois point de
+                    départ des navires grecs et romains, le port reste un symbole du dynamisme économique et commercial
+                    de la ville.
                 </p>
             </article>
         </section>
-        <article>
+        <article id="musee">
             <h2>Le Musée national d’Alexandrie</h2>
             <figure>
                 <img src="images/musee.jpg" alt="Musée National d'Alexandrie" title="Musée National d'Alexandrie">
                 <figcaption>Musée National d'Alexandrie</figcaption>
             </figure>
             <p>
-                Installé dans un ancien palais de style italien, le Musée national d’Alexandrie retrace l’évolution de la ville à travers plus de 1 800 objets archéologiques. On y découvre des trésors issus des époques pharaonique, grecque, romaine, copte et islamique. Certaines pièces proviennent même des fouilles sous-marines du port, témoignant du glorieux passé de la cité engloutie. C’est un lieu incontournable pour comprendre la richesse historique et culturelle d’Alexandrie. 
+                Installé dans un ancien palais de style italien, le Musée national d’Alexandrie retrace l’évolution de
+                la ville à travers plus de 1 800 objets archéologiques. On y découvre des trésors issus des époques
+                pharaonique, grecque, romaine, copte et islamique. Certaines pièces proviennent même des fouilles
+                sous-marines du port, témoignant du glorieux passé de la cité engloutie. C’est un lieu incontournable
+                pour comprendre la richesse historique et culturelle d’Alexandrie.
             </p>
         </article>
         <section>
-            <article>
+            <article id="jardins">
                 <h2>Les Jardins de Montazah</h2>
                 <figure>
                     <img src="images/jardin.jpg" alt="Jardins de Montazah" title="Jardins de Montazah">
                     <figcaption>Palais et jardins de Montazah</figcaption>
                 </figure>
                 <p>
-                    Situés à l’est de la ville, les Jardins de Montazah s’étendent sur plus de 150 hectares. Créés à la fin du XIXe siècle sous le règne du khédive Abbas II, ils entourent le somptueux Palais de Montazah, résidence royale d’été. Bordés par la mer, ces jardins mêlent style européen et influences orientales. C’est aujourd’hui un lieu de promenade prisé des habitants et des visiteurs, offrant une vue splendide sur la Méditerranée.
+                    Situés à l’est de la ville, les Jardins de Montazah s’étendent sur plus de 150 hectares. Créés à la
+                    fin du XIXe siècle sous le règne du khédive Abbas II, ils entourent le somptueux Palais de Montazah,
+                    résidence royale d’été. Bordés par la mer, ces jardins mêlent style européen et influences
+                    orientales. C’est aujourd’hui un lieu de promenade prisé des habitants et des visiteurs, offrant une
+                    vue splendide sur la Méditerranée.
                 </p>
             </article>
-            <article>
+            <article id="catacombes">
                 <h2>Les Catacombes de Kom el-Shoqafa</h2>
                 <figure>
-                    <img src="images/catacombes.jpg" alt="Catacombes de Kom el-Shoqafa" title="Catacombes de Kom el-Shoqafa">
+                    <img src="images/catacombes.jpg" alt="Catacombes de Kom el-Shoqafa"
+                        title="Catacombes de Kom el-Shoqafa">
                     <figcaption>Intèrieur Catacombes de Kom el-Shoqafa</figcaption>
-                    <img src="images/catacombesext.jpg" alt="Catacombes de kom el-shoqafa de l'extèrieur" title="Catacombes de kom el-shoqafa de l'extèrieur">
+                    <img src="images/catacombesext.jpg" alt="Catacombes de kom el-shoqafa de l'extèrieur"
+                        title="Catacombes de kom el-shoqafa de l'extèrieur">
                     <figcaption>Catacombes de kom el-shoqafa de l'extèrieur</figcaption>
                 </figure>
                 <p>
-                    Datant du IIe siècle apr. J.-C., les Catacombes de Kom el-Shoqafa sont l’un des plus fascinants sites archéologiques d’Alexandrie. Ce complexe souterrain, découvert par hasard en 1900, mêle art égyptien, grec et romain. On y trouve des tombeaux, des statues et des fresques d’une grande originalité, témoignant du syncrétisme culturel de la ville antique. Les catacombes, creusées sur trois niveaux, sont considérées comme l’une des Sept Merveilles du Moyen Âge. 
+                    Datant du IIe siècle apr. J.-C., les Catacombes de Kom el-Shoqafa sont l’un des plus fascinants
+                    sites archéologiques d’Alexandrie. Ce complexe souterrain, découvert par hasard en 1900, mêle art
+                    égyptien, grec et romain. On y trouve des tombeaux, des statues et des fresques d’une grande
+                    originalité, témoignant du syncrétisme culturel de la ville antique. Les catacombes, creusées sur
+                    trois niveaux, sont considérées comme l’une des Sept Merveilles du Moyen Âge.
                 </p>
             </article>
         </section>
     </main>
     <footer>
-        
+
     </footer>
 </body>
+
 </html>

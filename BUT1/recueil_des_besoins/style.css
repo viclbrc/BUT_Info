@@ -164,7 +164,7 @@ main nav ul {
 main nav li {
     list-style-type: none;
     text-align: center;
-    position: relative;
+    position: static;
     margin: 0;
     padding: 0.5em;
 }

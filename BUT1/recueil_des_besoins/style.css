@@ -161,11 +161,19 @@ main nav ul {
     margin: 0;
 }
 
+main nav li {
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0.5em;
+}
+
 main nav li a:link,
 main nav li a:visited {
     display: block;
     width: 10em;
-    height: 4em;
+    height: 5em;
     border: 1px solid #fdc126;
     border-radius: 8px;
     color: #fdc126;

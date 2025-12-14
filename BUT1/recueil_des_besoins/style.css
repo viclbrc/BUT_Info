@@ -164,7 +164,8 @@ main nav ul {
 main nav li a:link,
 main nav li a:visited {
     display: block;
-    width: 8em;
+    width: 10em;
+    height: 4em;
     border: 1px solid #fdc126;
     border-radius: 8px;
     color: #fdc126;

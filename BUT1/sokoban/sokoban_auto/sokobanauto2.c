@@ -51,6 +51,7 @@ int main() {
     char fichier[100];
     char fichierDep[100];
     int coups = 0;
+    int depValides = 0;
     int lig;
     int col;
     int nbDeplacement = 0;
@@ -67,10 +68,11 @@ int main() {
     trouver_joueur(plateau, &lig, &col);
 
     /* Boucle de jeu automatique */
-    while (!gagne(plateau) && coups < nbDeplacement) {
+    while (!gagne(plateau) && depValides < nbDeplacement) {
         afficher_entete(plateau, fichier, coups);
         afficher_plateau(plateau, fichier);
-        deplacer(plateau, &lig, &col, tabDeplacement[coups], &coups);
+        deplacer(plateau, &lig, &col, tabDeplacement[depValides], &coups);
+        depValides++;
         usleep(250000); // Pause de 250 ms
     }
 
@@ -184,73 +186,57 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     char cibleCaisse;
     bool quitterCible;
 
-    if (direction == 'g') {
-        dColonne = -1;
-        (*coups)++;
-    } else if (direction == 'h') {
-        dLigne = -1;
-        (*coups)++;
-    } else if (direction == 'b') {
-        dLigne = 1;
-        (*coups)++;
-    } else if (direction == 'd') {
-        dColonne = 1;
-        (*coups)++;
-    } else if (direction == 'H') {
-        dLigne = -1;
-        ligneCaisse = -1;
-        (*coups)++;
-    } else if (direction == 'B') {
-        dLigne = 1;
-        ligneCaisse = 1;
-        (*coups)++;
-    } else if (direction == 'D') {
-        dColonne = 1;
-        colonneCaisse = 1;
-        (*coups)++;
-    } else if (direction == 'G') {
-        dColonne = -1;
-        colonneCaisse = -1;
-        (*coups)++;
-    } else return '\0';
+    (*coups)++;  // on consomme TOUJOURS une commande
+
+    if (direction == 'g') dColonne = -1;
+    else if (direction == 'h') dLigne = -1;
+    else if (direction == 'b') dLigne = 1;
+    else if (direction == 'd') dColonne = 1;
+    else if (direction == 'H') dLigne = -1;
+    else if (direction == 'B') dLigne = 1;
+    else if (direction == 'G') dColonne = -1;
+    else if (direction == 'D') dColonne = 1;
+    else {
+        (*coups)--; 
+        return '\0';
+    }
 
     newLig = *lig + dLigne;
     newCol = *col + dColonne;
     cible = plateau[newLig][newCol];
 
-    if (direction == 'B' && cible != CHAR_CAISSE) {
+    if (cible == CHAR_MUR) {
+        (*coups)--; 
         return '\0';
-        (*coups)--;
-    } else if (direction == 'H' && cible != CHAR_CAISSE) {
-        return '\0';
-        (*coups)--;
-    } else if (direction == 'G' && cible != CHAR_CAISSE) {
-        return '\0';
-        (*coups)--;
-    } else if (direction == 'D' && cible != CHAR_CAISSE) {
-        return '\0';
-        (*coups)--;
     }
-    if (cible == CHAR_MUR) return '\0';
 
     quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);
     plateau[*lig][*col] = quitterCible ? CHAR_CIBLE : CHAR_VIDE;
 
     if (cible == CHAR_VIDE || cible == CHAR_CIBLE) {
         plateau[newLig][newCol] = (cible == CHAR_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-        *lig = newLig; *col = newCol;
-    } else if (cible == CHAR_CAISSE || cible == CHAR_CAISSE_CIBLE) {
+        *lig = newLig; 
+        *col = newCol;
+        return direction;
+    }
+
+    if (cible == CHAR_CAISSE || cible == CHAR_CAISSE_CIBLE) {
         ligneCaisse = newLig + dLigne;
         colonneCaisse = newCol + dColonne;
         cibleCaisse = plateau[ligneCaisse][colonneCaisse];
+
         if (cibleCaisse == CHAR_VIDE || cibleCaisse == CHAR_CIBLE) {
-            plateau[ligneCaisse][colonneCaisse] = (cibleCaisse == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE : CHAR_CAISSE;
-            plateau[newLig][newCol] = (cible == CHAR_CAISSE_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-            *lig = newLig; *col = newCol;
-        } else {
-            plateau[*lig][*col] = quitterCible ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-            return '\0';
+            plateau[ligneCaisse][colonneCaisse] =
+                (cibleCaisse == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE : CHAR_CAISSE;
+            plateau[newLig][newCol] =
+                (cible == CHAR_CAISSE_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
+            *lig = newLig; 
+            *col = newCol;
+            return direction;
         }
     }
-    return direction;
+
+    plateau[*lig][*col] = quitterCible ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
+    (*coups)--;          // déplacement invalide → on annule le coup
+    return '\0';
 }

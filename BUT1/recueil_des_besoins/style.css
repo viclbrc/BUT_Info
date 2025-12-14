@@ -190,12 +190,17 @@ h1 {
     color: #d9d9d9;
 }
 
+main > div {
+    display: flex ;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 main > div ul{
     display: flex;
     flex-direction: row ;
     flex-wrap: wrap;
 }
-
 
 
 div p {

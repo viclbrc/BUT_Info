@@ -30,6 +30,12 @@ header nav {
     padding: 1rem 0;
 }
 
+header > nav {
+    position : sticky;
+    top : 0;
+    z-index: 1000;
+}
+
 header nav img {
     height: 40px;
     vertical-align: middle;
@@ -197,6 +203,10 @@ section {
     box-shadow: 1 1 10px rgba(0, 0, 0, 0.5);
 }
 
+section > nav{
+    position:static;
+}
+
 section > div{
     display : flex;
     flex-direction : row;
@@ -270,6 +280,8 @@ section figure img {
 }
 
 #rivalite img{
+    position:relative;
+    z-index: 1;
     transform: rotate(270deg);
 }
 

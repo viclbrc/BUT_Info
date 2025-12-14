@@ -315,6 +315,11 @@ section figure {
     height: auto;
     border-radius: 8px;
     padding: 1em;
+    display: flex;
+    justify-content:space-between;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 section figcaption {

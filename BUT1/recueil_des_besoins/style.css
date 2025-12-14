@@ -143,7 +143,6 @@ main {
 }
 
 main nav {
-    box-shadow: 1px 1px 10px #fdc126;
     padding : 1em;
     background-color : #222223;
     margin : 1em;
@@ -166,7 +165,8 @@ main nav li a:link,
 main nav li a:visited {
     display: block;
     width: 8em;
-    border: 1px solid #222223;
+    border: 1px solid #fdc126;
+    border-radius: 8px;
     color: #fdc126;
     background-color: #222223; 
     text-decoration: none;

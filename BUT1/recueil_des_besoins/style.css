@@ -225,28 +225,80 @@ section > div{
     display : flex;
     flex-direction : row;
     flex-wrap : wrap;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+section > div > figure {
+    flex: 0 0 auto;
+    margin: 0;
 }
 
 section > div > div{
     display: flex;
     flex-direction : column;
     flex-wrap : wrap;
-    justify-content : center;
+    justify-content : flex-start;
+    flex: 1;
+    min-width: 300px;
 }
 
-#oeuvres ul {
+#oeuvres ul,
+#lieux ul,
+#personnages ul{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: start;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+}
+
+#oeuvres ul li,
+#lieux ul li,
+#personnages ul li {
+    flex: 0 0 auto;
+}
+
+#oeuvres figure,
+#lieux figure,
+#personnages figure {
+    width: 200px;
+    height: 280px;
+    padding: 1rem;
+    margin: 0;
+    background-color: #2a2a2b;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+#oeuvres figure img,
+#lieux figure img,
+#personnages figure img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+#oeuvres figcaption,
+#lieux figcaption,
+#personnages figcaption {
+    font-size: 0.85em;
+    text-align: center;
+    margin-top: 0.5rem;
+    line-height: 1.3;
 }
 
 section figure {
-    width: 150px;
+    width: 200px;
     height: auto;
     border-radius: 8px;
-    padding: 3em;
+    padding: 1em;
 }
 
 section figcaption {
@@ -262,9 +314,16 @@ section ul {
 }
 
 
+#index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #index figure {
     width: 300px;
     height: auto;
+    margin: 0 auto;
 }
 
 #index h2 {
@@ -276,7 +335,7 @@ section ul {
 #histoire h2,
 #personnages h2,
 #oeuvres h2 {
-    color: #d9d9d9;
+    color: #fdc126;
 }
 
 section h2 {
@@ -289,8 +348,9 @@ section h2 {
 }
 
 section figure img {
-    width:150px;
+    width: 100%;
     height: auto;
+    display: block;
 }
 
 #rivalite img{

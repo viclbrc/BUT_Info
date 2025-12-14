@@ -355,11 +355,6 @@ section figure img {
     display: block;
 }
 
-#rivalite img {
-    position: relative;
-    z-index: 1;
-    transform: rotate(270deg);
-}
 
 section[id] {
     scroll-margin-top: 4em;

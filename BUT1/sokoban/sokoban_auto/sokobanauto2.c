@@ -220,12 +220,16 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
 
     if (direction == 'B' && cible != CHAR_CAISSE) {
         return '\0';
+        (*coups)--;
     } else if (direction == 'H' && cible != CHAR_CAISSE) {
         return '\0';
+        (*coups)--;
     } else if (direction == 'G' && cible != CHAR_CAISSE) {
         return '\0';
+        (*coups)--;
     } else if (direction == 'D' && cible != CHAR_CAISSE) {
         return '\0';
+        (*coups)--;
     }
     if (cible == CHAR_MUR) return '\0';
 

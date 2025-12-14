@@ -254,6 +254,11 @@ section>div>div {
     min-width: 300px;
 }
 
+#intro p{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 #oeuvres ul,
 #lieux ul,
 #personnages ul {

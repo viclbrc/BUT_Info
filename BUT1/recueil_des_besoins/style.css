@@ -202,6 +202,9 @@ main > div ul{
     flex-wrap: wrap;
 }
 
+p {
+    font-size: 1.1em;
+}
 
 div p {
     text-align: center;
@@ -320,7 +323,7 @@ section ul {
 }
 
 #index figure {
-    width: 300px;
+    width: 700px;
     height: auto;
     margin: 0 auto;
 }

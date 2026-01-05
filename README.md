@@ -25,7 +25,7 @@ Automatisation du sokoban de la SAÉ 1.01 :
 
 Création d'une base de données à partir des consignes suivantes :
 
-[Consignes](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
+[Étape 1](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
 
 
 ### [SAÉ 1.05 Recueil des besoins](https://github.com/viclbrc/BUT_Info/tree/main/recueil_des_besoins)

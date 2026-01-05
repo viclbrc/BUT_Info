@@ -12,8 +12,8 @@ Réalisation d'un jeu en langage C : le Sokoban.
 - [Version 2](https://github.com/viclbrc/BUT_Info/blob/main/sokoban/v2/Consignes%20Version%202.pdf)
 
 Jeux finaux :
-- [Sokoban V1](https://github.com/viclbrc/BUT_Info/blob/main/sokoban/v1/sokobanoriginel.c)
-- [Sokoban V2](https://github.com/viclbrc/BUT_Info/blob/main/sokoban/v2/sokoban.c)
+- [Sokoban V1](https://github.com/viclbrc/BUT_Info/blob/main/sokoban/v1)
+- [Sokoban V2](https://github.com/viclbrc/BUT_Info/blob/main/sokoban/v2)
 
 ### [SAÉ 1.02 Comparaison d'approches algorithmiques (sokoban)](https://github.com/viclbrc/BUT_Info/tree/main/sokoban/sokoban_auto)
 

@@ -181,7 +181,7 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     char cibleCaisse;
     bool quitterCible;
 
-    (*coups)++;  // on consomme TOUJOURS une commande
+    (*coups)++; 
 
     if (direction == 'g') dColonne = -1;
     else if (direction == 'h') dLigne = -1;
@@ -201,7 +201,8 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     cible = plateau[newLig][newCol];
 
     if (cible == CHAR_MUR) {
-        (*coups)--; 
+        (*coups)--;
+
         return '\0';
     }
 
@@ -232,6 +233,8 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     }
 
     plateau[*lig][*col] = quitterCible ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-    (*coups)--;          // déplacement invalide = on annule le coup
+    (*coups)--;
     return '\0';
 }
+
+void ;

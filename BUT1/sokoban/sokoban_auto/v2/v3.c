@@ -43,7 +43,6 @@ void charger_deplacements(t_tabDeplacement t, char fichier[], int * nb);
 void trouver_joueur(t_Plateau plateau, int *lig, int *col);
 bool gagne(t_Plateau plateau);
 char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups);
-bool deplacerSansAffichage(t_Plateau plateau, int *lig, int *col, char direction);
 void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]);
 void enregistrerDeplacements(t_tabDeplacement deplacement, int nb, char fichier[]);
 void copierPlateau(t_Plateau source, t_Plateau destination);
@@ -109,8 +108,6 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-/* --- Fonctions utilitaires --- */
-
 void afficher_entete(t_Plateau plateau, char fichier[], int coups) {
     system("clear");
     printf("Partie : %s\n", fichier);
@@ -129,8 +126,6 @@ void afficher_plateau(t_Plateau plateau, char fichier[]) {
         printf("\n");
     }
 }
-
-
 
 void charger_partie(t_Plateau plateau, char fichier[]){
     FILE * f;
@@ -264,68 +259,6 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     return '\0';
 }
 
-/* Déplacement sans affichage - retourne true si le déplacement a eu lieu */
-bool deplacerSansAffichage(t_Plateau plateau, int *lig, int *col, char direction) {
-    int dLigne = 0;
-    int dColonne = 0;
-    int newLig;
-    int newCol;
-    int ligneCaisse;
-    int colonneCaisse;
-    char cible;
-    char cibleCaisse;
-    bool quitterCible;
-
-    if (direction == 'g') dColonne = -1;
-    else if (direction == 'h') dLigne = -1;
-    else if (direction == 'b') dLigne = 1;
-    else if (direction == 'd') dColonne = 1;
-    else if (direction == 'H') dLigne = -1;
-    else if (direction == 'B') dLigne = 1;
-    else if (direction == 'G') dColonne = -1;
-    else if (direction == 'D') dColonne = 1;
-    else {
-        return false;
-    }
-
-    newLig = *lig + dLigne;
-    newCol = *col + dColonne;
-    cible = plateau[newLig][newCol];
-
-    if (cible == CHAR_MUR) {
-        return false;
-    }
-
-    quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);
-    plateau[*lig][*col] = quitterCible ? CHAR_CIBLE : CHAR_VIDE;
-
-    if (cible == CHAR_VIDE || cible == CHAR_CIBLE) {
-        plateau[newLig][newCol] = (cible == CHAR_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-        *lig = newLig; 
-        *col = newCol;
-        return true;
-    }
-
-    if (cible == CHAR_CAISSE || cible == CHAR_CAISSE_CIBLE) {
-        ligneCaisse = newLig + dLigne;
-        colonneCaisse = newCol + dColonne;
-        cibleCaisse = plateau[ligneCaisse][colonneCaisse];
-
-        if (cibleCaisse == CHAR_VIDE || cibleCaisse == CHAR_CIBLE) {
-            plateau[ligneCaisse][colonneCaisse] =
-                (cibleCaisse == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE : CHAR_CAISSE;
-            plateau[newLig][newCol] =
-                (cible == CHAR_CAISSE_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-            *lig = newLig; 
-            *col = newCol;
-            return true;
-        }
-    }
-
-    plateau[*lig][*col] = quitterCible ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR;
-    return false;
-}
-
 void copierPlateau(t_Plateau source, t_Plateau destination) {
     for (int i = 0; i < TAILLE; i++) {
         for (int j = 0; j < TAILLE; j++) {
@@ -345,18 +278,62 @@ bool plateauxIdentiques(t_Plateau p1, t_Plateau p2) {
     return true;
 }
 
+/* Constantes pour les macro de mouvement */
+#define EFFECTUER_MOUVEMENT(plateau, lig, col, direction, resultat) \
+    do { \
+        int dl = 0, dc = 0; \
+        if (direction == 'g') dc = -1; \
+        else if (direction == 'h') dl = -1; \
+        else if (direction == 'b') dl = 1; \
+        else if (direction == 'd') dc = 1; \
+        else if (direction == 'H') dl = -1; \
+        else if (direction == 'B') dl = 1; \
+        else if (direction == 'G') dc = -1; \
+        else if (direction == 'D') dc = 1; \
+        else { resultat = false; break; } \
+        \
+        int nl = (lig) + dl, nc = (col) + dc; \
+        char cib = plateau[nl][nc]; \
+        if (cib == CHAR_MUR) { resultat = false; break; } \
+        \
+        bool qc = (plateau[lig][col] == CHAR_JOUEUR_CIBLE); \
+        plateau[lig][col] = qc ? CHAR_CIBLE : CHAR_VIDE; \
+        \
+        if (cib == CHAR_VIDE || cib == CHAR_CIBLE) { \
+            plateau[nl][nc] = (cib == CHAR_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR; \
+            (lig) = nl; (col) = nc; \
+            resultat = true; break; \
+        } \
+        \
+        if (cib == CHAR_CAISSE || cib == CHAR_CAISSE_CIBLE) { \
+            int lcb = nl + dl, ccb = nc + dc; \
+            char cibb = plateau[lcb][ccb]; \
+            if (cibb == CHAR_VIDE || cibb == CHAR_CIBLE) { \
+                plateau[lcb][ccb] = (cibb == CHAR_CIBLE) ? CHAR_CAISSE_CIBLE : CHAR_CAISSE; \
+                plateau[nl][nc] = (cib == CHAR_CAISSE_CIBLE) ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR; \
+                (lig) = nl; (col) = nc; \
+                resultat = true; break; \
+            } \
+        } \
+        \
+        plateau[lig][col] = qc ? CHAR_JOUEUR_CIBLE : CHAR_JOUEUR; \
+        resultat = false; \
+    } while(0)
+
 void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]) {
     t_Plateau plateau;
     int ligJoueur, colJoueur;
     int i, j, k;
     int depOptimiseIndex = 0;
+    bool mouvementValide;
     
     /* Première passe : supprimer les déplacements non joués */
     charger_partie(plateau, fichierNiveau);
     trouver_joueur(plateau, &ligJoueur, &colJoueur);
 
     for (i = 0; i < nbOriginal; i++) {
-        if (deplacerSansAffichage(plateau, &ligJoueur, &colJoueur, original[i])) {
+        EFFECTUER_MOUVEMENT(plateau, ligJoueur, colJoueur, original[i], mouvementValide);
+        if (mouvementValide) {
             optimisee[depOptimiseIndex++] = original[i];
         }
     }
@@ -380,7 +357,7 @@ void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDepla
 
         /* Appliquer les déplacements jusqu'à i */
         for (j = 0; j < i; j++) {
-            deplacerSansAffichage(plateauTestSequence, &ligTestSequence, &colTestSequence, optimisee[j]);
+            EFFECTUER_MOUVEMENT(plateauTestSequence, ligTestSequence, colTestSequence, optimisee[j], mouvementValide);
         }
 
         /* Parcourir à partir de i pour détecter une séquence inutile */
@@ -389,7 +366,7 @@ void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDepla
             t_Plateau plateauAvant;
             copierPlateau(plateauTestSequence, plateauAvant);
             
-            deplacerSansAffichage(plateauTestSequence, &ligTestSequence, &colTestSequence, optimisee[j]);
+            EFFECTUER_MOUVEMENT(plateauTestSequence, ligTestSequence, colTestSequence, optimisee[j], mouvementValide);
 
             /* Vérifier si une caisse a été déplacée */
             for (int ii = 0; ii < TAILLE && !caisseMarcheDansSequence; ii++) {

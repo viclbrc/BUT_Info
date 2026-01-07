@@ -494,3 +494,68 @@ footer a:hover,
 footer a:active {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 0 1rem;
+    }
+
+    header nav ul,
+    main nav ul {
+        flex-direction: column;
+    }
+
+    header nav li,
+    main nav li {
+        margin-bottom: 0.5rem;
+    }
+
+    aside {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    aside ul {
+        justify-content: center;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    header{
+        position: static;
+    }
+
+    header nav ul li {
+        z-index: 1000;
+    }
+
+    header img:first-child {
+        height: 80px;
+    }
+
+    header img:nth-child(4) {
+        height: 50px;
+    }
+
+    main>div,
+    section>div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section>div>figure,
+    section>div>div {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    #oeuvres figure,
+    #lieux figure,
+    #personnages figure {
+        width: 150px;
+        height: 220px;
+    }
+    
+}

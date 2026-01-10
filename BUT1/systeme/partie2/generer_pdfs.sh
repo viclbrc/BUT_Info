@@ -37,7 +37,7 @@ echo "Tous les fichiers sont présents."
 echo "Étape 1 : Génération de sites-dept.pdf"
 ./generer_html_dept.php sites.csv DEPTS > /tmp/sites-dept.html
 
-if [ $? -ne 0 ]
+if [ $? -ne 0 ] # $? : code de retour de la dernière commande -> si la dernière commande a échoué (-ne : !=)
 then
     >&2 echo "Erreur lors de la génération du HTML pour sites-dept"
     exit 1
@@ -105,6 +105,6 @@ fi
 
 echo "Génération terminée"
 echo "Fichiers créés:"
-[ -f "sites-dept.pdf" ] && echo "  - sites-dept.pdf"
-[ -f "sites-visites.pdf" ] && echo "  - sites-visites.pdf"
-[ -f "sites-regions.pdf" ] && echo "  - sites-regions.pdf"
+[ -f "sites-dept.pdf" ] && echo "sites-dept.pdf"
+[ -f "sites-visites.pdf" ] && echo "sites-visites.pdf"
+[ -f "sites-regions.pdf" ] && echo "sites-regions.pdf"

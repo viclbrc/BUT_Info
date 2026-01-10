@@ -1,11 +1,6 @@
 #!/usr/bin/php
 <?php
 
-if ($argc !== 3) {
-    fwrite(STDERR, "Usage: $argv[0] sites_touristiques.csv REGIONS\n");
-    exit(1);
-}
-
 $dept_to_region = [];
 
 if (($regions = fopen($argv[2], 'r')) !== false) {

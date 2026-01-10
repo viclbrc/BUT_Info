@@ -4,7 +4,6 @@
 # Script principal pour générer les 3 PDFs
 
 echo "Génération des PDFs des sites touristiques"
-echo ""
 
 # Vérification des fichiers nécessaires
 if [ ! -f "DEPTS" ] # -f : si le fichier DEPTS existe
@@ -35,7 +34,6 @@ fi
 
 echo "Tous les fichiers sont présents."
 
-echo ""
 echo "Étape 1 : Génération de sites-dept.pdf"
 ./generer_html_dept.php sites.csv DEPTS > /tmp/sites-dept.html
 
@@ -59,7 +57,6 @@ else
     exit 1
 fi
 
-echo ""
 echo "Étape 2 : Génération de sites-visites.pdf"
 ./generer_html_visites.php sites.csv DEPTS > /tmp/sites-visites.html
 
@@ -83,7 +80,6 @@ else
     exit 1
 fi
 
-echo ""
 echo "Étape 3 : Génération de sites-regions.pdf"
 ./generer_html_regions.php sites.csv REGIONS > /tmp/sites-regions.html
 
@@ -107,7 +103,6 @@ else
     exit 1
 fi
 
-echo ""
 echo "Génération terminée"
 echo "Fichiers créés:"
 [ -f "sites-dept.pdf" ] && echo "  - sites-dept.pdf"

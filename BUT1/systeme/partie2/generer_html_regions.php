@@ -94,14 +94,20 @@ th {
 tr {
     page-break-inside: avoid;
 }
+h6 {
+    text-align: center;
+}
 </style>
 </head>
 <body>
-<table>
-<colgroup>
-<col/><col/>
-</colgroup>
-<tr><th>Région</th><th>Visiteurs annuels</th></tr>
+    <h6>Nombre de visiteurs annuels par région</h6>
+    <table>
+        <colgroup>
+            <col/><col/>
+        </colgroup>
+        <tr><th>Région</th>
+            <th>Visiteurs annuels</th>
+        </tr>
 HTML;
 
 foreach ($totaux as $region => $total) {

@@ -116,14 +116,23 @@ th {
 tr {
     page-break-inside: avoid;
 }
+h6 {
+    text-align: center;
+}
 </style>
 </head>
-<body>
-<table>
-<colgroup>
-<col/><col/><col/><col/>
-</colgroup>
-<tr><th>Code</th><th>Département</th><th>Site</th><th>Visiteurs annuels</th></tr>
+    <body>
+        <h6>Sites et nombre de visiteurs par département</h6>
+    <table>
+        <colgroup>
+            <col/><col/>
+            <col/><col/>
+    </colgroup>
+    <tr><th>Code</th>  
+        <th>Département</th>
+        <th>Site</th>
+        <th>Visiteurs annuels</th>
+    </tr>
 HTML;
 
 foreach ($sites as $site) {

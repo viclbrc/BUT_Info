@@ -38,7 +38,6 @@ if (($y = fopen($argv[1], 'r')) !== false) {
         $parts = explode(';', $line);
         if (count($parts) < 3) continue;
 
-        // Remove empty columns at the beginning
         while (!empty($parts) && trim($parts[0]) === '') {
             array_shift($parts);
         }

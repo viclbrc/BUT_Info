@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # SAÉ 1.03 - Phase B
-# Script principal pour générer les 3 PDFs
 
 echo "Génération des PDFs des sites touristiques"
 
@@ -48,6 +47,7 @@ docker run --rm \
     -v "$(pwd)":/workspace/output \
     bigpapoo/sae103-html2pdf \
     weasyprint /workspace/input.html /workspace/output/sites-dept.pdf
+# -v : lie le dossier de l'hôte avec un dossier dans le conteneur | ro : lecture seule
 
 if [ -f "sites-dept.pdf" ]
 then

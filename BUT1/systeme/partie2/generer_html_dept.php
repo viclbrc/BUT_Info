@@ -17,9 +17,9 @@ if (($dep = fopen($argv[2], 'r')) !== false) {
     $line_num = 1;
     while (($name = fgets($dep)) !== false) {
         $name = trim($name);
-        if (empty($name)) continue;
+        if (empty($name)) continue; // empty : si la variable name est vide
         
-        if (isset($code_map[$line_num])) {
+        if (isset($code_map[$line_num])) { // isset détermine si une variable est déclarée et est non nulle
             $code = $code_map[$line_num];
             $depts[$code] = $name;
         }
@@ -30,12 +30,12 @@ if (($dep = fopen($argv[2], 'r')) !== false) {
 
 $sites = [];
 
-if (($y = fopen($argv[1], 'r')) !== false) {
+if (($y = fopen($argv[1], 'r')) !== false) { // $argv[1] : fichier CSV
     while (($line = fgets($y)) !== false) {
         $line = trim($line);
         if (empty($line)) continue;
 
-        $parts = explode(';', $line);
+        $parts = explode(',', $line);
         if (count($parts) < 3) continue;
 
         while (!empty($parts) && trim($parts[0]) === '') {
@@ -48,7 +48,7 @@ if (($y = fopen($argv[1], 'r')) !== false) {
         $dept = trim($parts[1]);
         $visiteurs = (int)$parts[2];
         
-        if ($site_name === 'nom' || $site_name === '' || strpos($site_name, 'Sites') !== false) continue;
+        if ($site_name === 'nom' || $site_name === '' || strpos($site_name, 'Sites') !== false) continue; // strpos cherche la position de la 1ère occurrence dans un string
 
         if ($dept === '' || $visiteurs == 0) continue;
 
@@ -146,7 +146,7 @@ foreach ($res as $departements) {
     echo '<tr><td>' . htmlspecialchars($departements['dept']) . '</td><td>' .
          htmlspecialchars($departements['dept_name']) . '</td><td>' .
          htmlspecialchars($departements['site']) . '</td><td>' .
-         htmlspecialchars($visiteurs_text) . '</td></tr>';
+         htmlspecialchars($visiteurs_text) . '</td></tr>'; // Formate un nombre / htmlspecialchars pour les caractères spéciaux d'HTML
 }
 
 echo '</table></body></html>';

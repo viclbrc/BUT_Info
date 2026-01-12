@@ -6,14 +6,14 @@ $dept_to_region = [];
 if (($regions = fopen($argv[2], 'r')) !== false) {
     while (($line = fgets($regions)) !== false) {
         $line = trim($line); // trim : supprime les espaces (par défaut) ou d'autres caractères en début et fin de string
-        if (empty($line)) continue;
+        if (empty($line)) continue; // empty : si la variable line est vide
         
         $parts = explode('=', $line);
         if (count($parts) < 2) continue;
         
         $region_name = trim($parts[0]);
         $depts_str = trim($parts[1]);
-        $depts = array_map('trim', explode(',', $depts_str)); // Applique la fonction trim au tableau entier
+        $depts = array_map('trim', explode(',', $depts_str)); // array_map : applique la fonction trim au tableau entier
         
         foreach ($depts as $dept) {
             $dept_to_region[$dept] = $region_name;
@@ -24,16 +24,16 @@ if (($regions = fopen($argv[2], 'r')) !== false) {
 
 $totaux = [];
 
-if (($y = fopen($argv[1], 'r')) !== false) {
+if (($y = fopen($argv[1], 'r')) !== false) { // $argv[1] : fichier CSV
     while (($line = fgets($y)) !== false) {
         $line = trim($line);
         if (empty($line)) continue;
 
-        $parts = explode(';', $line);
+        $parts = explode(',', $line);
         if (count($parts) < 3) continue;
 
         while (!empty($parts) && trim($parts[0]) === '') {
-            array_shift($parts);
+            array_shift($parts); // Dépile le premier élément du tableau
         }
         
         if (count($parts) < 3) continue;
@@ -112,7 +112,7 @@ HTML;
 
 foreach ($totaux as $region => $total) {
     echo '<tr><td>' . htmlspecialchars($region) . '</td><td>' .
-         number_format($total, 0, ',', ' ') . '</td></tr>'; // Formate un nombre
+         number_format($total, 0, ',', ' ') . '</td></tr>'; // Formate un nombre / htmlspecialchars pour les caractères spéciaux d'HTML
 }
 
 echo '</table></body></html>';

@@ -17,9 +17,9 @@ else
     echo "Script ou fichier d'entrée non trouvé"
 fi
 
-if [ -f "./convertir_csv_html.sh" ] && [ -f "./sites_touristiques_france.csv" ]; 
+if [ -f "./convertir_csv_html.sh" ] && [ -f "./sites_touristiques_france_v2.csv" ]; 
 then
-    bash ./convertir_csv_html.sh sites_touristiques_france.csv csv_output
+    bash ./convertir_csv_html.sh sites_touristiques_france_v2.csv csv_output
     echo "Fichiers générés dans: csv_output/"
 else
     echo "Script ou fichier d'entrée non trouvé"

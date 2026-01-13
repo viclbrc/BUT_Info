@@ -1,0 +1,9 @@
+java.lang est composé de plusieurs classes, des exceptions et des erreurs possibles.
+
+java.io fournit l'entrée et la sortie du système.
+
+La classe System sert à définir les static et les classes de base
+
+System a une majuscule car c'est une classe. out, méthode de la classe System, veut dire que c'est un output, affiche quelque chose. println, variable de la classe System, affiche la ligne avec la retour à la ligne inclus.
+
+Scanner est une classe qui lit du texte. in est une variable de classe.

@@ -29,6 +29,15 @@
 #define CHAR_CAISSE_CIBLE '*'
 #define CHAR_JOUEUR '@'
 #define CHAR_JOUEUR_CIBLE '+'
+#define DEPLACEMENT_GAUCHE 'g'
+#define DEPLACEMENT_DROITE 'd'
+#define DEPLACEMENT_HAUT 'h'
+#define DEPLACEMENT_BAS 'b'
+#define DEPLACEMENT_CAISSE_GAUCHE 'G'
+#define DEPLACEMENT_CAISSE_DROITE 'D'
+#define DEPLACEMENT_CAISSE_HAUT 'H'
+#define DEPLACEMENT_CAISSE_BAS 'B'
+
 typedef char t_Plateau[TAILLE][TAILLE];
 #define MAX_DEPLACEMENTS 1000
 typedef char t_tabDeplacement[MAX_DEPLACEMENTS];
@@ -183,14 +192,14 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
 
     (*coups)++; 
 
-    if (direction == 'g') dColonne = -1;
-    else if (direction == 'h') dLigne = -1;
-    else if (direction == 'b') dLigne = 1;
-    else if (direction == 'd') dColonne = 1;
-    else if (direction == 'H') dLigne = -1;
-    else if (direction == 'B') dLigne = 1;
-    else if (direction == 'G') dColonne = -1;
-    else if (direction == 'D') dColonne = 1;
+    if (direction == DEPLACEMENT_GAUCHE) dColonne = -1;
+    else if (direction == DEPLACEMENT_HAUT) dLigne = -1;
+    else if (direction == DEPLACEMENT_BAS) dLigne = 1;
+    else if (direction == DEPLACEMENT_DROITE) dColonne = 1;
+    else if (direction == DEPLACEMENT_CAISSE_HAUT) dLigne = -1;
+    else if (direction == DEPLACEMENT_CAISSE_BAS) dLigne = 1;
+    else if (direction == DEPLACEMENT_CAISSE_GAUCHE) dColonne = -1;
+    else if (direction == DEPLACEMENT_CAISSE_DROITE) dColonne = 1;
     else {
         (*coups)--; 
         return '\0';
@@ -236,5 +245,3 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     (*coups)--;
     return '\0';
 }
-
-void ;

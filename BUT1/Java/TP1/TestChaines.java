@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class TestChaines {
     public static void main(String[] args) {
@@ -54,5 +54,21 @@ public class TestChaines {
         // scan_s1.close();
         // scan_s2.close();
 
+        String mot1;
+        String mot2;
+        Scanner scan_mot1 = new Scanner(System.in);
+        System.out.println("Donnez le premier mot : ");
+        mot1 = scan_mot1.nextLine();
+        Scanner scan_mot2 = new Scanner(System.in);
+        System.out.println("Donnez le deuxième mot : ");
+        mot2 = scan_mot2.nextLine();
+        if (mot1.contains(mot2)) {
+            Integer indicedebut = mot1.indexOf(mot2);
+            Integer indicefin = indicedebut + mot2.length();
+            mot1 = mot1.substring(0, indicedebut) + mot1.substring(indicefin, mot1.length());
+        }
+        System.out.println(mot1);
+        scan_mot1.close();
+        scan_mot2.close();
     }
 }

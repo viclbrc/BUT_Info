@@ -43,9 +43,9 @@ void charger_deplacements(t_tabDeplacement t, char fichier[], int * nb);
 void trouver_joueur(t_Plateau plateau, int *lig, int *col);
 bool gagne(t_Plateau plateau);
 char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups);
-void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]);
-void enregistrerDeplacements(t_tabDeplacement deplacement, int nb, char fichier[]);
-void copierPlateau(t_Plateau source, t_Plateau destination);
+void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]);
+void enregistrer_deplacements(t_tabDeplacement deplacement, int nb, char fichier[]);
+void copier_plateau(t_Plateau source, t_Plateau destination);
 
 int main() {
     t_Plateau plateau;
@@ -89,13 +89,13 @@ int main() {
         printf("Elle contient initialement %d caracteres.\n", nbDeplacement);
         
         /* Optimiser les déplacements */
-        optimiserDeplacements(tabDeplacement, nbDeplacement, tabDeplacementOptimise, &nbDeplacementOptimise, fichier);
+        optimiser_deplacements(tabDeplacement, nbDeplacement, tabDeplacementOptimise, &nbDeplacementOptimise, fichier);
         
         printf("Apres optimisation elle contient %d caracteres. Souhaitez-vous l'enregistrer (O/N) ? ", nbDeplacementOptimise);
         scanf(" %c", &reponse);
         
         if (reponse == 'O' || reponse == 'o') {
-            enregistrerDeplacements(tabDeplacementOptimise, nbDeplacementOptimise, fichierDep);
+            enregistrer_deplacements(tabDeplacementOptimise, nbDeplacementOptimise, fichierDep);
             printf("Fichier enregistre.\n");
         }
     } else {
@@ -105,7 +105,6 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-/* --- Fonctions utilitaires --- */
 
 void afficher_entete(t_Plateau plateau, char fichier[], int coups) {
     system("clear");
@@ -257,7 +256,7 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     return '\0';
 }
 
-void copierPlateau(t_Plateau source, t_Plateau destination) {
+void copier_plateau(t_Plateau source, t_Plateau destination) {
     for (int i = 0; i < TAILLE; i++) {
         for (int j = 0; j < TAILLE; j++) {
             destination[i][j] = source[i][j];
@@ -265,7 +264,7 @@ void copierPlateau(t_Plateau source, t_Plateau destination) {
     }
 }
 
-void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]) {
+void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]) {
     t_Plateau plateau;
     t_Plateau testPlateau;
     int ligJoueur, colJoueur;
@@ -342,7 +341,7 @@ void optimiserDeplacements(t_tabDeplacement original, int nbOriginal, t_tabDepla
     }
 }
 
-void enregistrerDeplacements(t_tabDeplacement deplacement, int nb, char fichier[]) {
+void enregistrer_deplacements(t_tabDeplacement deplacement, int nb, char fichier[]) {
     FILE *f;
     int i;
     

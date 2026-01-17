@@ -500,13 +500,33 @@ footer a:active {
   ==================================================*/
 
 @media screen and (max-width: 768px) {
-    /* Header responsive */
-    header {
-        padding: 0.8em 0.5em;
+    /* Header responsive - passage en colonne */
+    header nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
     }
 
-    header li {
-        font-size: 1.2em;
+    header nav li {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    header nav a {
+        width: 100%;
+        padding: 0.5em;
+    }
+
+    header nav li ul {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    header nav li ul a {
+        font-size: 0.8em;
+        width: 100%;
     }
 
     header img:first-child {
@@ -515,20 +535,6 @@ footer a:active {
 
     header img:nth-child(4) {
         height: 55px;
-    }
-
-    header nav ul {
-        gap: 8px;
-    }
-
-    header nav a {
-        width: 5em;
-        font-size: 0.9em;
-    }
-
-    header nav li ul a {
-        font-size: 0.45em;
-        width: 6.5em;
     }
 
     main {
@@ -598,53 +604,68 @@ footer a:active {
 
 /* Mobiles (480px et moins) */
 @media screen and (max-width: 480px) {
-    /* Header responsive */
+    /* Header en position absolute - se cache au scroll */
     header {
-        position: static;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
         padding: 0.5em 0.3em;
     }
 
-    header li {
-        font-size: 1em;
-        margin-bottom: 0.3rem;
+    header>nav {
+        position: absolute;
     }
 
-    header img:first-child {
-        height: 60px;
-    }
-
-    header img:nth-child(4) {
-        height: 45px;
-    }
-
-    header nav {
-        padding: 0.5rem 0;
-    }
-
+    /* Header responsive - tout en colonne */
     header nav ul {
-        gap: 5px;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    header li {
+        font-size: 1.2em;
+        margin-bottom: 0.3rem;
+        width: 100%;
+        max-width: 250px;
     }
 
     header nav a {
-        width: 4.5em;
-        font-size: 0.75em;
-        padding: 0.3em;
+        width: 100%;
+        padding: 0.5em;
     }
 
     header nav li ul {
-        padding: 0.2em 0.3em;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0.5em;
     }
 
     header nav li ul a {
-        font-size: 0.4em;
-        width: 6em;
-        padding: 0.3em 0.4em;
-        line-height: 20px;
+        font-size: 0.75em;
+        width: 100%;
+        padding: 0.5em;
+        line-height: normal;
+    }
+
+    header img:first-child {
+        height: 70px;
+    }
+
+    header img:nth-child(4) {
+        height: 50px;
     }
 
     header nav ul li {
         z-index: 1000;
+    }
+
+    /* Espacement pour compenser le header absolute */
+    main {
+        margin-top: 50vh;
     }
 
     /* Menu de navigation dans les pages */

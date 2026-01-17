@@ -500,14 +500,13 @@ footer a:active {
   ==================================================*/
 
 @media screen and (max-width: 768px) {
-    /* Header responsive - passage en colonne */
     header {
         position: sticky;
         top: 0;
         transition: all 0.3s ease;
     }
 
-    /* Cacher tous les éléments sauf "Tourisme en Égypte" par défaut */
+    /* Cacher tous les éléments sauf "Tourisme en Égypte" */
     header:not(:hover) nav ul li:not(:nth-child(2)) {
         display: none;
     }
@@ -560,7 +559,6 @@ footer a:active {
         padding: 0 1rem;
     }
 
-    /* Menu de navigation dans les pages (saladin.html et alexandrie.html) */
     main nav {
         margin: 0.5em;
         padding: 0.5em;
@@ -585,7 +583,6 @@ footer a:active {
         font-size: 0.9em;
     }
 
-    /* Images dans les sections */
     #description img,
     #realisation img, 
     #outil img,
@@ -621,9 +618,7 @@ footer a:active {
     }
 }
 
-/* Mobiles (480px et moins) */
 @media screen and (max-width: 480px) {
-    /* Header se réduit au scroll - reste sticky mais compacté */
     header {
         position: sticky;
         top: 0;
@@ -648,7 +643,6 @@ footer a:active {
         position: sticky;
     }
 
-    /* Header responsive - tout en colonne */
     header nav ul {
         flex-direction: column;
         gap: 0.5rem;
@@ -694,7 +688,6 @@ footer a:active {
         z-index: 1000;
     }
 
-    /* Menu de navigation dans les pages */
     main nav {
         margin: 0.5em 0;
         padding: 0.5em;
@@ -732,7 +725,6 @@ footer a:active {
         max-width: 400px;
     }
 
-    /* Images dans les sections */
     #description img,
     #realisation img, 
     #outil img,

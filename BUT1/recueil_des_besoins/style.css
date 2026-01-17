@@ -501,6 +501,19 @@ footer a:active {
 
 @media screen and (max-width: 768px) {
     /* Header responsive - passage en colonne */
+    header {
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+        transition: max-height 0.3s ease;
+    }
+
+    header:not(:focus-within):not(:hover) {
+        max-height: 120px;
+        overflow: hidden;
+    }
+
     header nav ul {
         flex-direction: column;
         gap: 0.5rem;
@@ -604,17 +617,24 @@ footer a:active {
 
 /* Mobiles (480px et moins) */
 @media screen and (max-width: 480px) {
-    /* Header en position absolute - se cache au scroll */
+    /* Header se réduit au scroll - reste sticky mais compacté */
     header {
-        position: absolute;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
         padding: 0.5em 0.3em;
+        max-height: 100vh;
+        overflow-y: auto;
+        transition: max-height 0.3s ease;
+    }
+
+    /* Header compacté par défaut, s'ouvre au hover/focus */
+    header:not(:focus-within):not(:hover) {
+        max-height: 100px;
+        overflow: hidden;
     }
 
     header>nav {
-        position: absolute;
+        position: sticky;
     }
 
     /* Header responsive - tout en colonne */
@@ -661,11 +681,6 @@ footer a:active {
 
     header nav ul li {
         z-index: 1000;
-    }
-
-    /* Espacement pour compenser le header absolute */
-    main {
-        margin-top: 50vh;
     }
 
     /* Menu de navigation dans les pages */

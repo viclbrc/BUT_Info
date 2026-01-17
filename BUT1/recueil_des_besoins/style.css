@@ -499,11 +499,43 @@ footer a:active {
   =================== Media Query ==================
   ==================================================*/
 
-@media screen and (max-width: 768px) and (min-width: 480px) {
+@media screen and (max-width: 768px) {
+    /* Header responsive */
+    header {
+        padding: 0.8em 0.5em;
+    }
+
+    header li {
+        font-size: 1.2em;
+    }
+
+    header img:first-child {
+        height: 80px;
+    }
+
+    header img:nth-child(4) {
+        height: 55px;
+    }
+
+    header nav ul {
+        gap: 8px;
+    }
+
+    header nav a {
+        width: 5em;
+        font-size: 0.9em;
+    }
+
+    header nav li ul a {
+        font-size: 0.45em;
+        width: 6.5em;
+    }
+
     main {
         padding: 0 1rem;
     }
 
+    /* Menu de navigation dans les pages (saladin.html et alexandrie.html) */
     main nav {
         margin: 0.5em;
         padding: 0.5em;
@@ -528,6 +560,7 @@ footer a:active {
         font-size: 0.9em;
     }
 
+    /* Images dans les sections */
     #description img,
     #realisation img, 
     #outil img,
@@ -565,22 +598,56 @@ footer a:active {
 
 /* Mobiles (480px et moins) */
 @media screen and (max-width: 480px) {
-    header{
+    /* Header responsive */
+    header {
         position: static;
+        padding: 0.5em 0.3em;
+    }
+
+    header li {
+        font-size: 1em;
+        margin-bottom: 0.3rem;
+    }
+
+    header img:first-child {
+        height: 60px;
+    }
+
+    header img:nth-child(4) {
+        height: 45px;
+    }
+
+    header nav {
+        padding: 0.5rem 0;
+    }
+
+    header nav ul {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    header nav a {
+        width: 4.5em;
+        font-size: 0.75em;
+        padding: 0.3em;
+    }
+
+    header nav li ul {
+        padding: 0.2em 0.3em;
+    }
+
+    header nav li ul a {
+        font-size: 0.4em;
+        width: 6em;
+        padding: 0.3em 0.4em;
+        line-height: 20px;
     }
 
     header nav ul li {
         z-index: 1000;
     }
 
-    header img:first-child {
-        height: 80px;
-    }
-
-    header img:nth-child(4) {
-        height: 50px;
-    }
-
+    /* Menu de navigation dans les pages */
     main nav {
         margin: 0.5em 0;
         padding: 0.5em;
@@ -618,6 +685,7 @@ footer a:active {
         max-width: 400px;
     }
 
+    /* Images dans les sections */
     #description img,
     #realisation img, 
     #outil img,

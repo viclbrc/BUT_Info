@@ -46,6 +46,7 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
 void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]);
 void enregistrer_deplacements(t_tabDeplacement deplacement, int nb, char fichier[]);
 void copier_plateau(t_Plateau source, t_Plateau destination);
+bool caisses_identiques(t_Plateau p1, t_Plateau p2);
 
 int main() {
     t_Plateau plateau;
@@ -264,13 +265,30 @@ void copier_plateau(t_Plateau source, t_Plateau destination) {
     }
 }
 
+bool caisses_identiques(t_Plateau p1, t_Plateau p2) {
+    for (int i = 0; i < TAILLE; i++) {
+        for (int j = 0; j < TAILLE; j++) {
+            char c1 = p1[i][j];
+            char c2 = p2[i][j];
+            
+            /* Normaliser les caractères pour comparer uniquement les caisses */
+            bool caisse1 = (c1 == CHAR_CAISSE || c1 == CHAR_CAISSE_CIBLE);
+            bool caisse2 = (c2 == CHAR_CAISSE || c2 == CHAR_CAISSE_CIBLE);
+            
+            if (caisse1 != caisse2) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]) {
     t_Plateau plateau;
-    t_Plateau testPlateau;
+    t_Plateau plateauAvant;
     int ligJoueur, colJoueur;
-    int testLig, testCol;
     int i, j, k;
-    int compteur;
+    bool modifie;
     
     /* Copier les déplacements valides */
     charger_partie(plateau, fichierNiveau);
@@ -285,57 +303,48 @@ void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDepl
         }
     }
     
-    /* Supprimer les séquences inutiles */
-    i = 0;
-    while (i < *nbOptimisee) {
-        charger_partie(testPlateau, fichierNiveau);
-        trouver_joueur(testPlateau, &testLig, &testCol);
+    /* Supprimer les séquences inutiles de manière itérative */
+    modifie = true;
+    while (modifie) {
+        modifie = false;
         
-        /* Appliquer les mouvements jusqu'à i */
-        for (j = 0; j < i; j++) {
-            int dummy = 0;
-            deplacer(testPlateau, &testLig, &testCol, optimisee[j], &dummy);
-        }
-        
-        /* Position de départ de la séquence */
-        int startLig = testLig, startCol = testCol;
-        
-        /* Chercher un cycle : parcourir jusqu'à revenir au point de départ sans bouger de caisse */
-        compteur = i;
-        bool caisseBougee = false;
-        
-        while (compteur < *nbOptimisee && !caisseBougee) {
-            t_Plateau avant;
-            copierPlateau(testPlateau, avant);
+        /* Parcourir toute la séquence */
+        i = 0;
+        while (i < *nbOptimisee && !modifie) {
+            /* Simuler depuis le début jusqu'à i */
+            charger_partie(plateau, fichierNiveau);
+            trouver_joueur(plateau, &ligJoueur, &colJoueur);
             
-            int dummy = 0;
-            deplacer(testPlateau, &testLig, &testCol, optimisee[compteur], &dummy);
+            for (j = 0; j < i; j++) {
+                int dummy = 0;
+                deplacer(plateau, &ligJoueur, &colJoueur, optimisee[j], &dummy);
+            }
             
-            /* Vérifier si une caisse a bougé */
-            for (int ii = 0; ii < TAILLE && !caisseBougee; ii++) {
-                for (int jj = 0; jj < TAILLE && !caisseBougee; jj++) {
-                    char charAvant = avant[ii][jj];
-                    char charApres = testPlateau[ii][jj];
-                    if ((charAvant == CHAR_CAISSE || charAvant == CHAR_CAISSE_CIBLE) ||
-                        (charApres == CHAR_CAISSE || charApres == CHAR_CAISSE_CIBLE)) {
-                        if (charAvant != charApres) {
-                            caisseBougee = true;
-                        }
+            /* Sauvegarder la position et l'état à i */
+            int ligDebut = ligJoueur;
+            int colDebut = colJoueur;
+            copier_plateau(plateau, plateauAvant);
+            
+            /* Tester toutes les longueurs de séquence possibles à partir de i */
+            for (k = i; k < *nbOptimisee && !modifie; k++) {
+                /* Effectuer le déplacement k */
+                int dummy = 0;
+                deplacer(plateau, &ligJoueur, &colJoueur, optimisee[k], &dummy);
+                
+                /* Vérifier si on est revenu au point de départ sans bouger de caisse */
+                if (ligJoueur == ligDebut && colJoueur == colDebut && 
+                    caisses_identiques(plateauAvant, plateau)) {
+                    /* Séquence inutile trouvée : de i à k inclus */
+                    int longueur = k - i + 1;
+                    
+                    for (j = i; j < *nbOptimisee - longueur; j++) {
+                        optimisee[j] = optimisee[j + longueur];
                     }
+                    *nbOptimisee -= longueur;
+                    modifie = true;
                 }
             }
             
-            compteur++;
-        }
-        
-        /* Si on est au même endroit sans bouger de caisse, c'est une séquence inutile */
-        if (!caisseBougee && testLig == startLig && testCol == startCol) {
-            int longueur = compteur - i;
-            for (k = i; k < *nbOptimisee - longueur; k++) {
-                optimisee[k] = optimisee[k + longueur];
-            }
-            *nbOptimisee -= longueur;
-        } else {
             i++;
         }
     }

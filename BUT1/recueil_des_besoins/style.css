@@ -495,19 +495,61 @@ footer a:active {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 768px) {
+/*==================================================
+  =================== Media Query ==================
+  ==================================================*/
+
+@media screen and (max-width: 768px) and (min-width: 480px) {
     main {
         padding: 0 1rem;
     }
 
-    header nav ul,
-    main nav ul {
-        flex-direction: column;
+    main nav {
+        margin: 0.5em;
+        padding: 0.5em;
     }
 
-    header nav li,
+    main nav ul {
+        gap: 0.5rem;
+    }
+
     main nav li {
-        margin-bottom: 0.5rem;
+        padding: 0.3em;
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+
+    main nav li a:link,
+    main nav li a:visited {
+        width: 100%;
+        height: auto;
+        min-height: 4em;
+        padding: 0.5em;
+        font-size: 0.9em;
+    }
+
+    #description img,
+    #realisation img, 
+    #outil img,
+    #philosophie img,
+    #rivalite img,
+    #mausolee img,
+    #vueParArabe img,
+    #croisade img,
+    #histoireA img,
+    #moderneA img,
+    #phareA img,
+    #portA img,
+    #museeA img,
+    #jardinsA img,
+    #catacombesA img,
+    #histoire img,
+    #pyramides img,
+    #sphinx img,
+    #unesco img, 
+    #musee img {
+        width: 100%;
+        max-width: 350px;
     }
 
     aside {
@@ -519,9 +561,9 @@ footer a:active {
     aside ul {
         justify-content: center;
     }
-    
 }
 
+/* Mobiles (480px et moins) */
 @media screen and (max-width: 480px) {
     header{
         position: static;
@@ -539,6 +581,31 @@ footer a:active {
         height: 50px;
     }
 
+    main nav {
+        margin: 0.5em 0;
+        padding: 0.5em;
+    }
+
+    main nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    main nav li {
+        padding: 0.3em;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    main nav li a:link,
+    main nav li a:visited {
+        width: 100%;
+        height: auto;
+        min-height: 3.5em;
+        padding: 0.8em 0.5em;
+        font-size: 0.85em;
+    }
+
     main>div,
     section>div {
         flex-direction: column;
@@ -551,11 +618,34 @@ footer a:active {
         max-width: 400px;
     }
 
+    #description img,
+    #realisation img, 
+    #outil img,
+    #philosophie img,
+    #rivalite img,
+    #mausolee img,
+    #vueParArabe img,
+    #croisade img,
+    #histoireA img,
+    #moderneA img,
+    #phareA img,
+    #portA img,
+    #museeA img,
+    #jardinsA img,
+    #catacombesA img,
+    #histoire img,
+    #pyramides img,
+    #sphinx img,
+    #unesco img, 
+    #musee img {
+        width: 100%;
+        max-width: 300px;
+    }
+
     #oeuvres figure,
     #lieux figure,
     #personnages figure {
         width: 150px;
         height: 220px;
     }
-    
 }

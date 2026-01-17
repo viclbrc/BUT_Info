@@ -504,14 +504,20 @@ footer a:active {
     header {
         position: sticky;
         top: 0;
-        max-height: 100vh;
-        overflow-y: auto;
-        transition: max-height 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    header:not(:focus-within):not(:hover) {
-        max-height: 120px;
-        overflow: hidden;
+    /* Cacher tous les éléments sauf "Tourisme en Égypte" par défaut */
+    header:not(:hover) nav ul li:not(:nth-child(2)) {
+        display: none;
+    }
+
+    header:not(:hover) nav img {
+        height: 60px;
+    }
+
+    header:not(:hover) {
+        padding: 0.5em;
     }
 
     header nav ul {
@@ -622,15 +628,20 @@ footer a:active {
         position: sticky;
         top: 0;
         padding: 0.5em 0.3em;
-        max-height: 100vh;
-        overflow-y: auto;
-        transition: max-height 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    /* Header compacté par défaut, s'ouvre au hover/focus */
-    header:not(:focus-within):not(:hover) {
-        max-height: 100px;
-        overflow: hidden;
+    /* Cacher tous les éléments sauf "Tourisme en Égypte" par défaut */
+    header:not(:hover) nav ul li:not(:nth-child(2)) {
+        display: none;
+    }
+
+    header:not(:hover) nav img {
+        height: 50px;
+    }
+
+    header:not(:hover) {
+        padding: 0.3em;
     }
 
     header>nav {

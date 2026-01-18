@@ -91,7 +91,7 @@ int main() {
     afficher_entete(plateau, fichier, coups);
     afficher_plateau(plateau, fichier);
 
-    if (gagne(plateau)) {
+    if (gagne(plateau) || depValides >= nbDeplacementOptimise) {
         printf("\nLa suite de déplacements optimisée est une solution pour la partie %s.\n", fichier);
         printf("La suite de déplacements %s contient initialement %d caractères.\n", fichierDep, nbDeplacement);
         printf("Après optimisation elle contient %d caractères.\n", nbDeplacementOptimise);
@@ -204,17 +204,18 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     char cible;
     char cibleCaisse;
     bool quitterCible;
+    bool estMajuscule;
 
-    (*coups)++;
+    (*coups)++;  // on consomme TOUJOURS une commande
 
-    if (direction == DEPLACEMENT_GAUCHE) dColonne = -1;
-    else if (direction == DEPLACEMENT_HAUT) dLigne = -1;
-    else if (direction == DEPLACEMENT_BAS) dLigne = 1;
-    else if (direction == DEPLACEMENT_DROITE) dColonne = 1;
-    else if (direction == DEPLACEMENT_CAISSE_HAUT) dLigne = -1;
-    else if (direction == DEPLACEMENT_CAISSE_BAS) dLigne = 1;
-    else if (direction == DEPLACEMENT_CAISSE_GAUCHE) dColonne = -1;
-    else if (direction == DEPLACEMENT_CAISSE_DROITE) dColonne = 1;
+    if (direction == 'g') { dColonne = -1; estMajuscule = false; }
+    else if (direction == 'h') { dLigne = -1; estMajuscule = false; }
+    else if (direction == 'b') { dLigne = 1; estMajuscule = false; }
+    else if (direction == 'd') { dColonne = 1; estMajuscule = false; }
+    else if (direction == 'H') { dLigne = -1; estMajuscule = true; }
+    else if (direction == 'B') { dLigne = 1; estMajuscule = true; }
+    else if (direction == 'G') { dColonne = -1; estMajuscule = true; }
+    else if (direction == 'D') { dColonne = 1; estMajuscule = true; }
     else {
         (*coups)--; 
         return '\0';
@@ -230,6 +231,23 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     }
 
     quitterCible = (plateau[*lig][*col] == CHAR_JOUEUR_CIBLE);
+    
+    // Vérifie si c'est une caisse
+    bool estCaisse = (cible == CHAR_CAISSE || cible == CHAR_CAISSE_CIBLE);
+    bool estVide = (cible == CHAR_VIDE || cible == CHAR_CIBLE);
+    
+    // Si caisse et minuscule -> pas de déplacement
+    if (estCaisse && !estMajuscule) {
+        (*coups)--;
+        return '\0';
+    }
+    
+    // Si vide et majuscule -> pas de déplacement
+    if (estVide && estMajuscule) {
+        (*coups)--;
+        return '\0';
+    }
+
     plateau[*lig][*col] = quitterCible ? CHAR_CIBLE : CHAR_VIDE;
 
     if (cible == CHAR_VIDE || cible == CHAR_CIBLE) {

@@ -9,7 +9,6 @@
  * But : pousser toutes les caisses ($) sur les cibles (.).
  * Le joueur contrôle Sokoban (@).
  * 
- *
  * Conventions de codage respectées.
  * 
  */
@@ -22,7 +21,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-/* Déclaration des constantes */
 #define TAILLE 12
 #define CHAR_VIDE ' '
 #define CHAR_MUR '#'
@@ -31,6 +29,14 @@
 #define CHAR_CAISSE_CIBLE '*'
 #define CHAR_JOUEUR '@'
 #define CHAR_JOUEUR_CIBLE '+'
+#define DEPLACEMENT_GAUCHE 'g'
+#define DEPLACEMENT_DROITE 'd'
+#define DEPLACEMENT_HAUT 'h'
+#define DEPLACEMENT_BAS 'b'
+#define DEPLACEMENT_CAISSE_GAUCHE 'G'
+#define DEPLACEMENT_CAISSE_DROITE 'D'
+#define DEPLACEMENT_CAISSE_HAUT 'H'
+#define DEPLACEMENT_CAISSE_BAS 'B'
 typedef char t_Plateau[TAILLE][TAILLE];
 #define MAX_DEPLACEMENTS 1000
 typedef char t_tabDeplacement[MAX_DEPLACEMENTS];
@@ -62,37 +68,34 @@ int main() {
     int nbDeplacementOptimise = 0;
     char reponse;
 
-    /* Demander les fichiers */
     printf("Nom du fichier .sok : ");
     scanf("%s", fichier);
     printf("Nom du fichier .dep : ");
     scanf("%s", fichierDep);
-
-    /* Charger la partie et les déplacements */
+    
     charger_partie(plateau, fichier);
     charger_deplacements(tabDeplacement, fichierDep, &nbDeplacement);
+    
+    optimiser_deplacements(tabDeplacement, nbDeplacement, tabDeplacementOptimise, &nbDeplacementOptimise, fichier);
+    
     trouver_joueur(plateau, &lig, &col);
-
-    /* Boucle de jeu automatique */
-    while (!gagne(plateau) && depValides < nbDeplacement) {
+    
+    while (!gagne(plateau) && depValides < nbDeplacementOptimise) {
         afficher_entete(plateau, fichier, coups);
         afficher_plateau(plateau, fichier);
-        deplacer(plateau, &lig, &col, tabDeplacement[depValides], &coups);
+        deplacer(plateau, &lig, &col, tabDeplacementOptimise[depValides], &coups);
         depValides++;
-        usleep(250000); // Pause de 250 ms
+        usleep(250000);
     }
 
     afficher_entete(plateau, fichier, coups);
     afficher_plateau(plateau, fichier);
 
     if (gagne(plateau)) {
-        printf("\nLa suite de deplacements %s est une solution pour la partie %s.\n", fichierDep, fichier);
-        printf("Elle contient initialement %d caracteres.\n", nbDeplacement);
-        
-        /* Optimiser les déplacements */
-        optimiser_deplacements(tabDeplacement, nbDeplacement, tabDeplacementOptimise, &nbDeplacementOptimise, fichier);
-        
-        printf("Apres optimisation elle contient %d caracteres. Souhaitez-vous l'enregistrer (O/N) ? ", nbDeplacementOptimise);
+        printf("\nLa suite de déplacements optimisée est une solution pour la partie %s.\n", fichier);
+        printf("La suite de déplacements %s contient initialement %d caractères.\n", fichierDep, nbDeplacement);
+        printf("Après optimisation elle contient %d caractères.\n", nbDeplacementOptimise);
+        printf("\nSouhaitez-vous enregistrer la version optimisée (O/N) ? ");
         scanf(" %c", &reponse);
         
         if (reponse == 'O' || reponse == 'o') {
@@ -100,7 +103,7 @@ int main() {
             printf("Fichier enregistre.\n");
         }
     } else {
-        printf("\nLa suite de deplacements %s N'EST PAS une solution pour la partie %s.\n", fichierDep, fichier);
+        printf("\nLa suite de déplacements optimisée n'est pas une solution pour la partie %s.\n", fichier);
     }
 
     return EXIT_SUCCESS;
@@ -110,7 +113,7 @@ int main() {
 void afficher_entete(t_Plateau plateau, char fichier[], int coups) {
     system("clear");
     printf("Partie : %s\n", fichier);
-    printf("Deplacements : %d\n", coups);
+    printf("Déplacements : %d\n", coups);
 }
 
 void afficher_plateau(t_Plateau plateau, char fichier[]) {
@@ -202,16 +205,16 @@ char deplacer(t_Plateau plateau, int *lig, int *col, char direction, int *coups)
     char cibleCaisse;
     bool quitterCible;
 
-    (*coups)++;  // on consomme TOUJOURS une commande
+    (*coups)++;
 
-    if (direction == 'g') dColonne = -1;
-    else if (direction == 'h') dLigne = -1;
-    else if (direction == 'b') dLigne = 1;
-    else if (direction == 'd') dColonne = 1;
-    else if (direction == 'H') dLigne = -1;
-    else if (direction == 'B') dLigne = 1;
-    else if (direction == 'G') dColonne = -1;
-    else if (direction == 'D') dColonne = 1;
+    if (direction == DEPLACEMENT_GAUCHE) dColonne = -1;
+    else if (direction == DEPLACEMENT_HAUT) dLigne = -1;
+    else if (direction == DEPLACEMENT_BAS) dLigne = 1;
+    else if (direction == DEPLACEMENT_DROITE) dColonne = 1;
+    else if (direction == DEPLACEMENT_CAISSE_HAUT) dLigne = -1;
+    else if (direction == DEPLACEMENT_CAISSE_BAS) dLigne = 1;
+    else if (direction == DEPLACEMENT_CAISSE_GAUCHE) dColonne = -1;
+    else if (direction == DEPLACEMENT_CAISSE_DROITE) dColonne = 1;
     else {
         (*coups)--; 
         return '\0';
@@ -271,7 +274,6 @@ bool caisses_identiques(t_Plateau p1, t_Plateau p2) {
             char c1 = p1[i][j];
             char c2 = p2[i][j];
             
-            /* Normaliser les caractères pour comparer uniquement les caisses */
             bool caisse1 = (c1 == CHAR_CAISSE || c1 == CHAR_CAISSE_CIBLE);
             bool caisse2 = (c2 == CHAR_CAISSE || c2 == CHAR_CAISSE_CIBLE);
             
@@ -285,67 +287,60 @@ bool caisses_identiques(t_Plateau p1, t_Plateau p2) {
 
 void optimiser_deplacements(t_tabDeplacement original, int nbOriginal, t_tabDeplacement optimisee, int *nbOptimisee, char fichierNiveau[]) {
     t_Plateau plateau;
-    t_Plateau plateauAvant;
-    int ligJoueur, colJoueur;
-    int i, j, k;
-    bool modifie;
+    t_Plateau plateauApresPoussee;
+    int ligJoueur;
+    int colJoueur;
+    int ligApresPoussee;
+    int colApresPoussee;
+    int indApresPoussee;
+    int compteur;
+    char resultat;
     
-    /* Copier les déplacements valides */
     charger_partie(plateau, fichierNiveau);
     trouver_joueur(plateau, &ligJoueur, &colJoueur);
     
     *nbOptimisee = 0;
+    indApresPoussee = -1;  // Indique qu'aucune caisse n'a été poussée récemment
     
-    for (i = 0; i < nbOriginal; i++) {
-        int dummy = 0;
-        if (deplacer(plateau, &ligJoueur, &colJoueur, original[i], &dummy) != '\0') {
-            optimisee[(*nbOptimisee)++] = original[i];
-        }
-    }
-    
-    /* Supprimer les séquences inutiles de manière itérative */
-    modifie = true;
-    while (modifie) {
-        modifie = false;
+    for (int i = 0; i < nbOriginal; i++) {
+        compteur = 0;
         
-        /* Parcourir toute la séquence */
-        i = 0;
-        while (i < *nbOptimisee && !modifie) {
-            /* Simuler depuis le début jusqu'à i */
-            charger_partie(plateau, fichierNiveau);
-            trouver_joueur(plateau, &ligJoueur, &colJoueur);
+        // Sauvegarde l'état avant le déplacement
+        copier_plateau(plateau, plateauApresPoussee);
+
+        // Tente le déplacement
+        resultat = deplacer(plateau, &ligJoueur, &colJoueur, original[i], &compteur);
+        
+        // Si le déplacement est pas possible (mur), ne pas le compter
+        if (resultat == '\0') {
+            continue;
+        }
+        
+        // Vérifie si une caisse a été déplacée
+        if (!caisses_identiques(plateauApresPoussee, plateau)) {
+            // Si une caisse a été poussée
+            optimisee[(*nbOptimisee)++] = original[i];
             
-            for (j = 0; j < i; j++) {
-                int dummy = 0;
-                deplacer(plateau, &ligJoueur, &colJoueur, optimisee[j], &dummy);
-            }
+            // Enregistre la position de Sokoban après cette poussée
+            ligApresPoussee = ligJoueur;
+            colApresPoussee = colJoueur;
+            indApresPoussee = *nbOptimisee - 1;
+            copier_plateau(plateau, plateauApresPoussee);
+        } else {
+            // Si aucune caisse n'a été poussée = déplacement
             
-            /* Sauvegarder la position et l'état à i */
-            int ligDebut = ligJoueur;
-            int colDebut = colJoueur;
-            copier_plateau(plateau, plateauAvant);
-            
-            /* Tester toutes les longueurs de séquence possibles à partir de i */
-            for (k = i; k < *nbOptimisee && !modifie; k++) {
-                /* Effectuer le déplacement k */
-                int dummy = 0;
-                deplacer(plateau, &ligJoueur, &colJoueur, optimisee[k], &dummy);
+            // Si on est revenu à la position après la dernière poussée
+            if (indApresPoussee != -1 && 
+                ligJoueur == ligApresPoussee && 
+                colJoueur == colApresPoussee &&
+                caisses_identiques(plateauApresPoussee, plateau)) {
                 
-                /* Vérifier si on est revenu au point de départ sans bouger de caisse */
-                if (ligJoueur == ligDebut && colJoueur == colDebut && 
-                    caisses_identiques(plateauAvant, plateau)) {
-                    /* Séquence inutile trouvée : de i à k inclus */
-                    int longueur = k - i + 1;
-                    
-                    for (j = i; j < *nbOptimisee - longueur; j++) {
-                        optimisee[j] = optimisee[j + longueur];
-                    }
-                    *nbOptimisee -= longueur;
-                    modifie = true;
-                }
+                // Supprime tous les déplacements depuis la dernière poussée
+                *nbOptimisee = indApresPoussee + 1;
+            } else {
+                // Ajoute le déplacement
+                optimisee[(*nbOptimisee)++] = original[i];
             }
-            
-            i++;
         }
     }
 }

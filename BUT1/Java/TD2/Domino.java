@@ -147,7 +147,7 @@ class Jeu {
 
         String reponse = "non";
 
-        while (reponse.compareTo("non") =  true) {
+        while (reponse.compareTo("non") != 0) {
             System.out.println("\n--- Nouveau tour ---");
             System.out.print("Valeur gauche du domino à poser : ");
             int g = sc.nextInt();

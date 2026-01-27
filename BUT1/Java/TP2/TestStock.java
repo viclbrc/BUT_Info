@@ -125,23 +125,19 @@ class Stock {
 
         Produit premier = pile.sommet();
         
-        // Retirer les produits périmés successivement
         while (!pile.pileVide()) {
             Produit p = pile.sommet();
             int anciennete = dateJ - p.getDateEntree();
             
             if (anciennete > 5) {
-                // Produit périmé, le retirer
                 pile.depiler();
             } else {
-                // Produit frais trouvé, le retirer et terminer
                 pile.depiler();
                 System.out.println("Produit " + p.getReference() + " sorti du stock");
                 return;
             }
         }
         
-        // Si on arrive ici, tous les produits étaient périmés
         System.out.println("Produit " + premier.getReference() + " périmé, stock intégralement supprimé");
     }
 

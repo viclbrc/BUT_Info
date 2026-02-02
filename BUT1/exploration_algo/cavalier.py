@@ -1,4 +1,13 @@
 import numpy as np
+import random as rd
+import tkinter as tk
+
+window = tk.Tk()
+window.title("SAÉ 2.02 / Problème du cavalier")
+# Représentation de l'échiquier 8x8
+tk.Label(window, text="Échiquier 8x8").grid(row=8, column=8, columnspan=8)
+
+
 
 tab = [['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1'],
        ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2', 'H2'],
@@ -9,8 +18,10 @@ tab = [['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1'],
        ['A7', 'B7', 'C7', 'D7', 'E7', 'F7', 'G7', 'H7'],
        ['A8', 'B8', 'C8', 'D8', 'E8', 'F8', 'G8', 'H8']]
 
+taille = 8
+
 # 0 = non visité, 1 = visité
-echiquier = np.zeros((8, 8), dtype=int)
+echiquier = np.zeros((taille, taille), dtype=int)
 
 # Les mouvements possibles du cavalier
 mouvements = [(2, 1), (2, -1), (-2, 1), (-2, -1),
@@ -20,7 +31,7 @@ def estValide(x: int, y: int):
     '''
     Vérifie si une position est valide (dans les limites et non visitée)
     '''
-    if 0 <= x < 8 and 0 <= y < 8:
+    if 0 <= x < taille and 0 <= y < taille:
         if echiquier[x][y] == 0:  # Si case non visitée
             return True
     return False
@@ -39,7 +50,7 @@ def dfs_cavalier(x: int, y: int, compteur: int, chemin: list):
     chemin.append(tab[x][y])
     
     # Condition d'arrêt : si toutes les cases sont visitées (8*8 = 64)
-    if compteur == 64:
+    if compteur == taille * taille:
         return True
     
     # Tester tous les mouvements possibles du cavalier
@@ -56,9 +67,9 @@ def dfs_cavalier(x: int, y: int, compteur: int, chemin: list):
     chemin.pop()
     return False
 
-# Lancer l'algorithme à partir de la case (0, 0)
+# Cas 1 : Lancer l'algorithme à partir d'une case random
 chemin = []
-if dfs_cavalier(0, 0, 1, chemin):
+if dfs_cavalier(rd.randint(0, taille-1), rd.randint(0, taille-1), 1, chemin):
     print("Solution trouvée !")
     print(f"Chemin du cavalier ({len(chemin)} cases) :")
     print(chemin)
@@ -66,3 +77,31 @@ if dfs_cavalier(0, 0, 1, chemin):
     print(echiquier)
 else:
     print("Aucune solution trouvée.")
+
+# Figure 3 : Lancer l'algorithme à partir de la case (1, 7)
+taille = 8
+chemin = []
+if dfs_cavalier(1, 7, 1, chemin):
+    print("Solution trouvée !")
+    print(f"Chemin du cavalier ({len(chemin)} cases) :")
+    print(chemin)
+    print("\nMatrice de visite (ordre de passage) :")
+    print(echiquier)
+else:
+    print("Aucune solution trouvée.")
+
+# Cas 2 : Le Tour Fermé
+# Échiquier 6x6
+taille = 6
+chemin = []
+if dfs_cavalier(1, 7, 1, chemin):
+    print("Solution trouvée !")
+    print(f"Chemin du cavalier ({len(chemin)} cases) :")
+    print(chemin)
+    print("\nMatrice de visite (ordre de passage) :")
+    print(echiquier)
+else:
+    print("Aucune solution trouvée.")
+
+# Visualisation dans une fenêtre graphique
+window.mainloop()

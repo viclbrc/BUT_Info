@@ -43,3 +43,5 @@ Outils utilisés :
 - Github
 - HTML
 - CSS
+
+### [SAÉ 2.02 Exploration algorithmique d'un projet](https://github.com/viclbrc/BUT_Info/tree/main/exploration_algo)

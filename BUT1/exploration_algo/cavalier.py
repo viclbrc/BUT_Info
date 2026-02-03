@@ -4,8 +4,7 @@ import tkinter as tk
 
 window = tk.Tk()
 window.title("SAÉ 2.02 / Problème du cavalier")
-# Représentation de l'échiquier 8x8
-tk.Label(window, text="Échiquier 8x8").grid(row=8, column=8, columnspan=8)
+tk.Label(window, text="Échiquier 8x8").grid(row=0, column=0, columnspan=8)
 
 
 
@@ -36,7 +35,7 @@ def estValide(x: int, y: int):
             return True
     return False
 
-def dfs_cavalier(x: int, y: int, compteur: int, chemin: list):
+def dfs_cavalier(x: int, y: int, compteur: int, chemin: list, ferme: bool = False):
     '''
     DFS avec Backtracking pour résoudre le problème du cavalier.
     
@@ -44,51 +43,108 @@ def dfs_cavalier(x: int, y: int, compteur: int, chemin: list):
     - x, y : position actuelle
     - compteur : nombre de cases visitées
     - chemin : liste des cases visitées dans l'ordre
+    - ferme : booléen indiquant si le tour doit être fermé
     '''
     # Marquer la case actuelle comme visitée
     echiquier[x][y] = compteur
     chemin.append(tab[x][y])
-    
-    # Condition d'arrêt : si toutes les cases sont visitées (8*8 = 64)
-    if compteur == taille * taille:
-        return True
-    
-    # Tester tous les mouvements possibles du cavalier
-    for dx, dy in mouvements:
-        nouveauX, nouveauY = x + dx, y + dy
+    if ferme == False:
+        # Condition d'arrêt : si toutes les cases sont visitées (8*8 = 64)
+        if compteur == taille * taille:
+            return True
         
-        if estValide(nouveauX, nouveauY):
+        # Tester tous les mouvements possibles du cavalier
+        coups = []
+        for dx, dy in mouvements:
+            nouveauX, nouveauY = x + dx, y + dy
+            if estValide(nouveauX, nouveauY):
+                # Compter le nombre de sorties possibles depuis la case
+                sorties = 0
+                for ddx, ddy in mouvements:
+                    nx, ny = nouveauX + ddx, nouveauY + ddy
+                    if estValide(nx, ny):
+                        sorties += 1
+                coups.append((sorties, nouveauX, nouveauY))
+
+        # Prioriser les cases avec le moins de sorties possibles
+        coups.sort(key=lambda c: c[0])
+
+        for _, nouveauX, nouveauY in coups:
             # Appel récursif
-            if dfs_cavalier(nouveauX, nouveauY, compteur + 1, chemin):
+            if dfs_cavalier(nouveauX, nouveauY, compteur + 1, chemin, ferme):
                 return True  # Solution trouvée
+    else:
+        if compteur == taille * taille + 1:
+            # Vérifier si le cavalier peut revenir à la position de départ
+            for dx, dy in mouvements:
+                if x + dx == chemin[0][0] and y + dy == chemin[0][1]:
+                    return True
+            return False
     
     # Backtracking : remet la case à 0 (non visitée) car impasse
     echiquier[x][y] = 0
     chemin.pop()
     return False
 
-# Cas 1 : Lancer l'algorithme à partir d'une case random
-chemin = []
-if dfs_cavalier(rd.randint(0, taille-1), rd.randint(0, taille-1), 1, chemin):
-    print("Solution trouvée !")
-    print(f"Chemin du cavalier ({len(chemin)} cases) :")
-    print(chemin)
-    print("\nMatrice de visite (ordre de passage) :")
-    print(echiquier)
-else:
-    print("Aucune solution trouvée.")
+# # Cas 1 : Lancer l'algorithme à partir d'une case random
+# chemin = []
+# if dfs_cavalier(rd.randint(0, taille-1), rd.randint(0, taille-1), 1, chemin):
+#     print("Solution trouvée !")
+#     print(f"Chemin du cavalier ({len(chemin)} cases) :")
+#     print(chemin)
+#     print("\nMatrice de visite (ordre de passage) :")
+#     print(echiquier)
+# else:
+#     print("Aucune solution trouvée.")
 
-# Figure 3 : Lancer l'algorithme à partir de la case (1, 7)
-taille = 8
-chemin = []
-if dfs_cavalier(1, 7, 1, chemin):
-    print("Solution trouvée !")
-    print(f"Chemin du cavalier ({len(chemin)} cases) :")
-    print(chemin)
-    print("\nMatrice de visite (ordre de passage) :")
-    print(echiquier)
-else:
-    print("Aucune solution trouvée.")
+# # Affichage dans une fenêtre tkinter (échiquier 8x8) + chemin tracé dans l'ordre
+# cell_size = 60
+# canvas = tk.Canvas(window, width=taille * cell_size, height=taille * cell_size, highlightthickness=0)
+# canvas.grid(row=1, column=0, columnspan=8)
+
+# for i in range(taille):
+#     for j in range(taille):
+#         bg = "#EEEED2" if (i + j) % 2 == 0 else "#769656"
+#         x0, y0 = j * cell_size, i * cell_size
+#         x1, y1 = x0 + cell_size, y0 + cell_size
+#         canvas.create_rectangle(x0, y0, x1, y1, fill=bg, outline="#000000",)
+
+# path_positions = []
+# for n in range(1, taille * taille + 1):
+#     pos = np.argwhere(echiquier == n)
+#     if len(pos) == 0:
+#         break
+#     i, j = pos[0]
+#     path_positions.append((i, j))
+
+# def draw_step(k: int):
+#     if k >= len(path_positions):
+#         return
+#     i, j = path_positions[k]
+#     cx = j * cell_size + cell_size / 2
+#     cy = i * cell_size + cell_size / 2
+#     canvas.create_text(cx, cy, text=str(k + 1), fill="black")
+#     if k > 0:
+#         ip, jp = path_positions[k - 1]
+#         px = jp * cell_size + cell_size / 2
+#         py = ip * cell_size + cell_size / 2
+#         canvas.create_line(px, py, cx, cy, fill="black", width=2)
+#     window.after(150, lambda: draw_step(k + 1))
+
+# draw_step(0)
+# window.mainloop()
+
+# # Figure 3 : Lancer l'algorithme à partir de la case (1, 7)
+# taille = 8
+# chemin = []
+# if dfs_cavalier(0, 7, 1, chemin):
+#     print("Solution trouvée !")
+#     print(f"Chemin du cavalier ({len(chemin)} cases) :")
+#     print(chemin)
+#     print("\nMatrice de visite (ordre de passage) :")
+#     print(echiquier)
+# else:
+#     print("Aucune solution trouvée.")
 
 # Cas 2 : Le Tour Fermé
 # Échiquier 6x6
@@ -102,6 +158,3 @@ if dfs_cavalier(1, 7, 1, chemin):
     print(echiquier)
 else:
     print("Aucune solution trouvée.")
-
-# Visualisation dans une fenêtre graphique
-window.mainloop()

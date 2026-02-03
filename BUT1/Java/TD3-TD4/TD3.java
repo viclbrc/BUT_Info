@@ -34,7 +34,7 @@ class Compte{
 
 	private String numero;
 	private Personne titulaire;
-	private double solde;
+	public double solde;
 	private static Scanner entree = new Scanner(System.in);
 
 	Compte(String i, Personne ti){
@@ -78,14 +78,54 @@ class CompteRemunere extends Compte{
         this.taux = t;
     }
 
+    public String toString() {
+        return super.toString() + " / Taux d'intérêts : " + taux;
+    }
+
     public void afficher(){
-        super.afficher();
-        System.out.println(" / Taux d'intérêts : "+taux);
+        System.out.println(this.toString());
     }
 
     public void versementInt(){
         double interets = solde * taux;
         solde += interets;
+    }
+}
+
+class Entreprise{
+
+    private String nom;
+    private Personne comptable;
+
+    public Entreprise(String nom, Personne comptable){
+        this.nom = nom;
+        this.comptable = comptable;
+    }
+
+    public String toString(){
+        return "Entreprise : " + nom + " / Comptable : " + comptable.getNom();
+    }
+
+    public void afficher(){
+        System.out.println(this.toString());
+    }
+}
+
+class CompteEntreprise extends Compte{
+
+    private Entreprise entreprise;
+
+    public CompteEntreprise(String n, Personne p, Entreprise e){
+        super(n, p);
+        this.entreprise = e;
+    }
+
+    public String toString(){
+        return super.toString() + " / " + entreprise.toString();
+    }
+
+    public void afficher(){
+        System.out.println(this.toString());
     }
 }
 
@@ -104,5 +144,13 @@ class TD3{
         cr1.afficher();
         cr1.retirer();
         cr1.afficher();
+        cr1.versementInt();
+        cr1.afficher();
+
+        Personne p3 = new Personne("Durand", "Chloe", "Lannion");
+        Entreprise e1 = new Entreprise("TechNord", p3);
+        CompteEntreprise ce1 = new CompteEntreprise("FR001122334455", p3, e1);
+        ce1.deposer();
+        ce1.afficher();
     }
 }

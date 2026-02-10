@@ -34,12 +34,24 @@ public class CoursesChevaux {
         System.out.println("Nom: Cheval 3");
         course.rechercheCheval("Cheval 3");
 
-        System.out.println("\n=== Test meilleureCote ===");
+        System.out.println("=== Test meilleureCote ===");
         ChevalDeCourse meilleur = course.meilleureCote();
         System.out.println("Attendu: Cheval 3 | Obtenu: " + (meilleur == null ? "null" : meilleur.getNom()));
 
-        System.out.println("\n=== Affichage course ===");
+        System.out.println("=== Affichage course ===");
         course.affiche();
+
+        System.out.println("=== Affichage Jockeys et Entraineurs ===");
+        Jockey jockey1 = new Jockey("Durant", "Jacques", "4 rue D", 70.0f, 3000.0f);
+        Jockey jockey2 = new Jockey("Durand", "Jean", "5 rue E", 68.0f, 3200.0f);
+        cheval1.attribueJockey(jockey1);
+        cheval2.attribueJockey(jockey2);
+
+        entraineur1.affiche();
+        entraineur2.affiche();
+        entraineur3.affiche();
+        jockey1.affiche();
+        jockey2.affiche();
     }
 }
 
@@ -76,14 +88,34 @@ class Personne {
 }
 
 class Entraineur extends Personne {
+    private int numero;
+    private static int compteur = 0;
+
     public Entraineur(String nom, String prenom, String adresse) {
         super(nom, prenom, adresse);
+        compteur++;
+        this.numero = compteur;
+    }
+
+    public void affiche() {
+        super.afficher();
+        System.out.println("Numéro d'entraîneur: " + this.numero);
     }
 }
 
 class Jockey extends Personne {
-    public Jockey(String nom, String prenom, String adresse) {
+    private float poids;
+    private float salaire;
+
+    public Jockey(String nom, String prenom, String adresse, float poids, float salaire) {
         super(nom, prenom, adresse);
+        this.poids = poids;
+        this.salaire = salaire;
+    }
+
+    public void affiche() {
+        super.afficher();
+        System.out.println("Poids: " + this.poids + " kg | Salaire: " + this.salaire + " euros");
     }
 }
 

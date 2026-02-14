@@ -6,8 +6,6 @@ window = tk.Tk()
 window.title("SAÉ 2.02 / Problème du cavalier")
 tk.Label(window, text="Échiquier 8x8").grid(row=0, column=0, columnspan=8)
 
-
-
 tab = [['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1'],
        ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2', 'H2'],
        ['A3', 'B3', 'C3', 'D3', 'E3', 'F3', 'G3', 'H3'],
@@ -86,71 +84,9 @@ def dfs_cavalier(x: int, y: int, compteur: int, chemin: list, ferme: bool = Fals
     chemin.pop()
     return False
 
-# # Cas 1 : Lancer l'algorithme à partir d'une case random
-# chemin = []
-# if dfs_cavalier(rd.randint(0, taille-1), rd.randint(0, taille-1), 1, chemin):
-#     print("Solution trouvée !")
-#     print(f"Chemin du cavalier ({len(chemin)} cases) :")
-#     print(chemin)BUT1/exploration_algo/cavalier.py
-#     print("\nMatrice de visite (ordre de passage) :")
-#     print(echiquier)
-# else:
-#     print("Aucune solution trouvée.")
-
-# # Affichage dans une fenêtre tkinter (échiquier 8x8) + chemin tracé dans l'ordre
-# cell_size = 60
-# canvas = tk.Canvas(window, width=taille * cell_size, height=taille * cell_size, highlightthickness=0)
-# canvas.grid(row=1, column=0, columnspan=8)
-
-# for i in range(taille):
-#     for j in range(taille):
-#         bg = "#EEEED2" if (i + j) % 2 == 0 else "#769656"
-#         x0, y0 = j * cell_size, i * cell_size
-#         x1, y1 = x0 + cell_size, y0 + cell_size
-#         canvas.create_rectangle(x0, y0, x1, y1, fill=bg, outline="#000000",)
-
-# path_positions = []
-# for n in range(1, taille * taille + 1):
-#     pos = np.argwhere(echiquier == n)
-#     if len(pos) == 0:
-#         break
-#     i, j = pos[0]
-#     path_positions.append((i, j))
-
-# def draw_step(k: int):
-#     if k >= len(path_positions):
-#         return
-#     i, j = path_positions[k]
-#     cx = j * cell_size + cell_size / 2
-#     cy = i * cell_size + cell_size / 2
-#     canvas.create_text(cx, cy, text=str(k + 1), fill="black")
-#     if k > 0:
-#         ip, jp = path_positions[k - 1]
-#         px = jp * cell_size + cell_size / 2
-#         py = ip * cell_size + cell_size / 2
-#         canvas.create_line(px, py, cx, cy, fill="black", width=2)
-#     window.after(150, lambda: draw_step(k + 1))
-
-# draw_step(0)
-# window.mainloop()
-
-# # Figure 3 : Lancer l'algorithme à partir de la case (1, 7)
-# taille = 8
-# chemin = []
-# if dfs_cavalier(0, 7, 1, chemin):
-#     print("Solution trouvée !")
-#     print(f"Chemin du cavalier ({len(chemin)} cases) :")
-#     print(chemin)
-#     print("\nMatrice de visite (ordre de passage) :")
-#     print(echiquier)
-# else:
-#     print("Aucune solution trouvée.")
-
-# Cas 2 : Le Tour Fermé
-# Échiquier 6x6
-taille = 6
+# Cas 1 : Lancer l'algorithme à partir d'une case random
 chemin = []
-if dfs_cavalier(1, 7, 1, chemin):
+if dfs_cavalier(rd.randint(0, taille-1), rd.randint(0, taille-1), 1, chemin):
     print("Solution trouvée !")
     print(f"Chemin du cavalier ({len(chemin)} cases) :")
     print(chemin)
@@ -158,3 +94,40 @@ if dfs_cavalier(1, 7, 1, chemin):
     print(echiquier)
 else:
     print("Aucune solution trouvée.")
+
+# Affichage dans une fenêtre tkinter (échiquier 8x8) + chemin tracé dans l'ordre
+cell_size = 60
+canvas = tk.Canvas(window, width=taille * cell_size, height=taille * cell_size, highlightthickness=0)
+canvas.grid(row=1, column=0, columnspan=8)
+
+for i in range(taille):
+    for j in range(taille):
+        bg = "#EEEED2" if (i + j) % 2 == 0 else "#769656"
+        x0, y0 = j * cell_size, i * cell_size
+        x1, y1 = x0 + cell_size, y0 + cell_size
+        canvas.create_rectangle(x0, y0, x1, y1, fill=bg, outline="#000000",)
+
+path_positions = []
+for n in range(1, taille * taille + 1):
+    pos = np.argwhere(echiquier == n)
+    if len(pos) == 0:
+        break
+    i, j = pos[0]
+    path_positions.append((i, j))
+
+def draw_step(k: int):
+    if k >= len(path_positions):
+        return
+    i, j = path_positions[k]
+    cx = j * cell_size + cell_size / 2
+    cy = i * cell_size + cell_size / 2
+    canvas.create_text(cx, cy, text=str(k + 1), fill="black")
+    if k > 0:
+        ip, jp = path_positions[k - 1]
+        px = jp * cell_size + cell_size / 2
+        py = ip * cell_size + cell_size / 2
+        canvas.create_line(px, py, cx, cy, fill="black", width=2)
+    window.after(150, lambda: draw_step(k + 1))
+
+draw_step(0)
+window.mainloop()

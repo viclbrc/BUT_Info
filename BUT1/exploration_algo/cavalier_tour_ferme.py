@@ -1,101 +1,49 @@
 import numpy as np
-import random as rd
-import tkinter as tk
 
-window = tk.Tk()
-window.title("SAÉ 2.02 / Problème du cavalier")
-tk.Label(window, text="Échiquier 8x8").grid(row=0, column=0, columnspan=8)
+mouvements = [(2,1),(2,-1),(-2,1),(-2,-1),(1,2),(1,-2),(-1,2),(-1,-2)]
 
-
-
-tab = [['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1'],
-       ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2', 'H2'],
-       ['A3', 'B3', 'C3', 'D3', 'E3', 'F3', 'G3', 'H3'],
-       ['A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'G4', 'H4'],
-       ['A5', 'B5', 'C5', 'D5', 'E5', 'F5', 'G5', 'H5'],
-       ['A6', 'B6', 'C6', 'D6', 'E6', 'F6', 'G6', 'H6'],
-       ['A7', 'B7', 'C7', 'D7', 'E7', 'F7', 'G7', 'H7'],
-       ['A8', 'B8', 'C8', 'D8', 'E8', 'F8', 'G8', 'H8']]
-
-taille = 8
-
-# 0 = non visité, 1 = visité
-echiquier = np.zeros((taille, taille), dtype=int)
-
-# Les mouvements possibles du cavalier
-mouvements = [(2, 1), (2, -1), (-2, 1), (-2, -1),
-             (1, 2), (1, -2), (-1, 2), (-1, -2)]
-
-def estValide(x: int, y: int):
-    '''
-    Vérifie si une position est valide (dans les limites et non visitée)
-    '''
-    if 0 <= x < taille and 0 <= y < taille:
-        if echiquier[x][y] == 0:  # Si case non visitée
-            return True
-    return False
-
-def dfs_cavalier(x: int, y: int, compteur: int, chemin: list, ferme: bool = False):
-    '''
-    DFS avec Backtracking pour résoudre le problème du cavalier.
+def backtrack(pos_x, pos_y, etape, chemin, echiquier, taille, profondeur=0):
+    echiquier[pos_x, pos_y] = etape
+    chemin.append((pos_x, pos_y))
     
-    Paramètres:
-    - x, y : position actuelle
-    - compteur : nombre de cases visitées
-    - chemin : liste des cases visitées dans l'ordre
-    - ferme : booléen indiquant si le tour doit être fermé
-    '''
-    # Marquer la case actuelle comme visitée
-    echiquier[x][y] = compteur
-    chemin.append(tab[x][y])
-    if ferme == False:
-        # Condition d'arrêt : si toutes les cases sont visitées (8*8 = 64)
-        if compteur == taille * taille:
+    if etape == taille * taille:
+        # Vérifier si on peut revenir au départ
+        if any(pos_x+dx==chemin[0][0] and pos_y+dy==chemin[0][1] for dx,dy in mouvements):
             return True
+        echiquier[pos_x, pos_y] = 0
+        chemin.pop()
+        return False
+    
+    # Heuristique de Warnsdorff : compter les sorties possibles
+    coups = []
+    for decalage_x, decalage_y in mouvements:
+        nouveau_x = pos_x + decalage_x
+        nouveau_y = pos_y + decalage_y
         
-        # Tester tous les mouvements possibles du cavalier
-        coups = []
-        for dx, dy in mouvements:
-            nouveauX, nouveauY = x + dx, y + dy
-            if estValide(nouveauX, nouveauY):
-                # Compter le nombre de sorties possibles depuis la case
-                sorties = 0
-                for ddx, ddy in mouvements:
-                    nx, ny = nouveauX + ddx, nouveauY + ddy
-                    if estValide(nx, ny):
-                        sorties += 1
-                coups.append((sorties, nouveauX, nouveauY))
-
-        # Prioriser les cases avec le moins de sorties possibles
-        coups.sort(key=lambda c: c[0])
-
-        for _, nouveauX, nouveauY in coups:
-            # Appel récursif
-            if dfs_cavalier(nouveauX, nouveauY, compteur + 1, chemin, ferme):
-                return True  # Solution trouvée
-    else:
-        if compteur == taille * taille + 1:
-            # Vérifier si le cavalier peut revenir à la position de départ
-            for dx, dy in mouvements:
-                if x + dx == chemin[0][0] and y + dy == chemin[0][1]:
-                    return True
-            return False
+        if 0 <= nouveau_x < taille and 0 <= nouveau_y < taille and echiquier[nouveau_x, nouveau_y] == 0:
+            nombre_sorties = sum(1 for ddx, ddy in mouvements 
+                                if 0<=nouveau_x+ddx<taille and 0<=nouveau_y+ddy<taille 
+                                and echiquier[nouveau_x+ddx, nouveau_y+ddy]==0)
+            coups.append((nombre_sorties, nouveau_x, nouveau_y))
     
-    # Backtracking : remet la case à 0 (non visitée) car impasse
-    echiquier[x][y] = 0
+    coups.sort()
+    limite = 2 if profondeur > 5 else len(coups)
+    
+    for _, nouveau_x, nouveau_y in coups[:limite]:
+        if backtrack(nouveau_x, nouveau_y, etape+1, chemin, echiquier, taille, profondeur+1):
+            return True
+    
+    echiquier[pos_x, pos_y] = 0
     chemin.pop()
     return False
 
-
-# Cas 2 : Le Tour Fermé
-# Échiquier 6x6
+# Programme principal
 taille = 6
+echiquier = np.zeros((taille, taille), dtype=int)
 chemin = []
-if dfs_cavalier(1, 7, 1, chemin):
-    print("Solution trouvée !")
-    print(f"Chemin du cavalier ({len(chemin)} cases) :")
-    print(chemin)
-    print("\nMatrice de visite (ordre de passage) :")
-    print(echiquier)
+
+if backtrack(0, 0, 1, chemin, echiquier, taille):
+    print(f"Cases visitées: {len(chemin)}/{taille*taille}\n")
+    print(echiquier.astype(int))
 else:
-    print("Aucune solution trouvée.")
+    print("✗ Aucun tour fermé trouvé.")

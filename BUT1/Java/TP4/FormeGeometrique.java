@@ -32,6 +32,23 @@ public abstract class FormeGeometrique {
         liste.trier();
         System.out.println("Après tri :");
         liste.afficher();
+
+        System.out.println("\n=== Recherche du plus grand rectangle ===");
+        Rectangle[] rectangles = new Rectangle[4];
+        rectangles[0] = new Rectangle(0, 0, 3, 4);
+        rectangles[1] = new Rectangle(1, 1, 5, 2);
+        rectangles[2] = new Rectangle(2, 2, 6, 3);
+        rectangles[3] = new Rectangle(3, 3, 2, 5);
+
+        Rectangle plusGrand = rectangles[0];
+        for (int i = 1; i < rectangles.length; i++) {
+            if (rectangles[i].surface() > plusGrand.surface()) {
+                plusGrand = rectangles[i];
+            }
+        }
+
+        System.out.println("Le plus grand rectangle a une surface de : " + plusGrand.surface());
+        plusGrand.dessiner("jaune");
     }
 
 	public FormeGeometrique(double x, double y){
@@ -85,13 +102,13 @@ class Rectangle extends FormeGeometrique implements Dessinable, Comparable {
     }
 
     public int compareTo(Object autre) {
-        if (this.surface() < ((FormeGeometrique) autre).surface()) {
-            return -1;
-        } else if (this.surface() > ((FormeGeometrique) autre).surface()) {
+        Rectangle rectangleAutre = (Rectangle) autre;
+        if (this.surface() > rectangleAutre.surface()) {
             return 1;
-        } else {
+        } else if (this.surface() == rectangleAutre.surface()) {
             return 0;
         }
+        return -1;
     }
 }
 
@@ -120,15 +137,15 @@ interface Dessinable {
     abstract public void dessiner(String couleur);
 }
 
-interface Comparable{
-    abstract public int compareTo(Object autre);
-}
-
 class ListeRectangles {
     private ArrayList<Rectangle> listeR;
 
     public ListeRectangles() {
         listeR = new ArrayList<Rectangle>();
+    }
+
+    public ListeRectangles(int taille) {
+        listeR = new ArrayList<Rectangle>(taille);
     }
 
     public void ajouter(Rectangle r) {
@@ -142,12 +159,14 @@ class ListeRectangles {
     }
 
     public void trier() {
-        ArrayList<Rectangle> listetriee = new ArrayList<Rectangle>();
-        for (Rectangle r : listeR) {
-            listetriee.add(r);
+        Rectangle[] tableau = new Rectangle[listeR.size()];
+        for (int i = 0; i < listeR.size(); i++) {
+            tableau[i] = listeR.get(i);
         }
-        listetriee.sort(null);
-        listeR = listetriee;
+        Arrays.sort(tableau);
+        for (int i = 0; i < tableau.length; i++) {
+            listeR.set(i, tableau[i]);
+        }
     }
 
     public Rectangle obtenirIemeRectangle(int i) {

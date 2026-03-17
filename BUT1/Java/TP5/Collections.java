@@ -1,10 +1,40 @@
 package BUT1.Java.TP5;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Collections {
     public static void main(String[] args) {
-        
+        Cours math = new Cours("Mathématiques");
+        Cours physique = new Cours("Physique");
+        Etudiant etudiant1 = new Etudiant("Dupont", "Jean");
+        Etudiant etudiant2 = new Etudiant("Durand", "Marie");
+        etudiant1.ajouterNote(math, 15);
+        etudiant1.ajouterNote(physique, 12);
+        etudiant2.ajouterNote(math, 18);
+        etudiant2.ajouterNote(physique, 14);
+        Groupe groupe = new Groupe("Groupe A");
+        groupe.ajouterEtudiant(etudiant1);
+        groupe.ajouterEtudiant(etudiant2);
+        groupe.afficherEtudiants();
+        groupe.calculerMoyenneGroupe();
+        etudiant1.calculerMoyenne();
+        etudiant1.meilleureNote();
+        etudiant1.pireNote();
+        etudiant2.calculerMoyenne();
+        etudiant2.meilleureNote();
+        etudiant2.pireNote();
+        etudiant1.afficherNote(math);
+        etudiant2.afficherNote(physique);
+        groupe.premierEtDernierEtudiant();
+        groupe.nombreEtudiants();
+        groupe.retirerEtudiant(etudiant2);
+        etudiant1.modifierNote(math, 16);
+        groupe.afficherEtudiants();
+        etudiant1.retirerNote(physique);
+        etudiant1.afficherNotes();
     }
 }
 
@@ -82,11 +112,16 @@ class Etudiant {
     }
 
     public void retirerNote(Cours cours) {
-        if (notes.containsKey(cours)) {
-            notes.remove(cours);
-        } else {
-            System.out.println("Le cours n'existe pas pour cet étudiant.");
+        Iterator<Map.Entry<Cours, Float>> it = notes.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Cours, Float> entry = it.next();
+            if (entry.getKey().equals(cours)) {
+                it.remove();
+                System.out.println("La note a été retirée.");
+                return;
+            }
         }
+        System.out.println("Le cours n'existe pas pour cet étudiant.");
     }
 
     public void afficherNotes() {
@@ -154,11 +189,11 @@ class Etudiant {
 
 class Groupe {
     private String nom;
-    private HashMap<Integer, Etudiant> etudiants;
+    private HashSet<Etudiant> etudiants;
 
     public Groupe(String nom) {
         this.nom = nom;
-        this.etudiants = new HashMap<>();
+        this.etudiants = new HashSet<>();
     }
 
     public String getNom() {
@@ -166,20 +201,24 @@ class Groupe {
     }
 
     public void ajouterEtudiant(Etudiant etudiant) {
-        etudiants.put(etudiant.getNumero(), etudiant);
+        etudiants.add(etudiant);
     }
 
     public void retirerEtudiant(Etudiant etudiant) {
-        if (etudiants.containsKey(etudiant.getNumero())) {
-            etudiants.remove(etudiant.getNumero());
-        } else {
-            System.out.println("L'étudiant n'existe pas dans ce groupe.");
+        Iterator<Etudiant> it = etudiants.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals(etudiant)) {
+                it.remove();
+                System.out.println("L'étudiant a été retiré du groupe.");
+                return;
+            }
         }
+        System.out.println("L'étudiant n'existe pas dans ce groupe.");
     }
 
     public void afficherEtudiants() {
         System.out.println("Groupe: " + nom);
-        for (Etudiant etudiant : etudiants.values()) {
+        for (Etudiant etudiant : etudiants) {
             System.out.println(etudiant);
         }
     }
@@ -195,7 +234,7 @@ class Groupe {
         }
         float somme = 0;
         int count = 0;
-        for (Etudiant etudiant : etudiants.values()) {
+        for (Etudiant etudiant : etudiants) {
             for (float note : etudiant.notes.values()) {
                 somme += note;
                 count++;
@@ -212,15 +251,37 @@ class Groupe {
         }
         Etudiant premier = null;
         Etudiant dernier = null;
-        for (Etudiant etudiant : etudiants.values()) {
-            if (premier == null || etudiant.getNumero() < premier.getNumero()) {
-                premier = etudiant;
+        float meilleureMoyenne = -1;
+        float pireMoyenne = 21;
+
+        for (Etudiant etudiant : etudiants) {
+            if (etudiant.notes.isEmpty()) {
+                continue;
             }
-            if (dernier == null || etudiant.getNumero() > dernier.getNumero()) {
+
+            float somme = 0;
+            for (float note : etudiant.notes.values()) {
+                somme += note;
+            }
+            float moyenne = somme / etudiant.notes.size();
+
+            if (premier == null || moyenne > meilleureMoyenne) {
+                premier = etudiant;
+                meilleureMoyenne = moyenne;
+            }
+
+            if (dernier == null || moyenne < pireMoyenne) {
                 dernier = etudiant;
+                pireMoyenne = moyenne;
             }
         }
-        System.out.println("Premier étudiant: " + premier);
-        System.out.println("Dernier étudiant: " + dernier);
+
+        if (premier == null || dernier == null) {
+            System.out.println("Aucun étudiant avec des notes dans ce groupe.");
+            return;
+        }
+
+        System.out.println("Premier étudiant : " + premier);
+        System.out.println("Dernier étudiant : " + dernier);
     }
 }

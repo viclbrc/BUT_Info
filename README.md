@@ -39,9 +39,30 @@ Comprend :
 - Page Œuvre : Gizeh (Pyramides et sphinx)
 
 Outils utilisés :
-- Figma (maquette)
+- Figma
 - Github
 - HTML
 - CSS
 
 ### [SAÉ 2.02 Exploration algorithmique d'un projet](https://github.com/viclbrc/BUT_Info/tree/main/exploration_algo)
+
+#### [Étape 1 : Problème du cavalier](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier)
+
+Réalisation de programmes Python pour résoudre automatiquement le problème du cavalier + analyse mathématique. (en binôme)
+
+Les différents programmes sont :
+
+- [Solution proposée à partir d'une case aléatoire](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier/cavalier.py)
+- [Solution pour le départ défini à la case H8](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier/cavalier_fig3.py)
+- [Solution pour case aléatoire avec une interface graphique qui montre en direct les lignes et le chemin du cavalier (TKinter)](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier/cavalier_tkinter.py)
+- [Tour fermé : la dernière case doit permettre de sauter sur la première](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier/cavalier_tour_ferme.py)
+
+#### [Étape 2 : Solveur de Picross](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross)
+
+En cours
+
+### [R2.01]((https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java)
+
+Tous mes TP et TD de Java au cours du deuxième semestre.
+
+### [S2.01 Réalisation]

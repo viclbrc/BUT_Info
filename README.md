@@ -61,8 +61,6 @@ Les différents programmes sont :
 
 En cours
 
-### [R2.01]((https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java)
+### [R2.01](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java)
 
 Tous mes TP et TD de Java au cours du deuxième semestre.
-
-### [S2.01 Réalisation]

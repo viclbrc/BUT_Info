@@ -59,8 +59,15 @@ Les différents programmes sont :
 
 #### [Étape 2 : Solveur de Picross](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross)
 
-En cours
+Réalisation de programmes Python pour résoudre automatiquement des grilles de Picross. (en binôme)
 
+Les différents programmes sont :
+
+- [Phase 1 : fonction est_valide](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross/Rendu_CORBELVictor_HARAPOI-GAUDINTemeio/picross_phase1.py)
+- [Phase 2 : Approche "Force Brute" (Backtracking Naïf)](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross/Rendu_CORBELVictor_HARAPOI-GAUDINTemeio/picross_phase2.py)
+- [Phase 3 : Approche "Intelligente" (Propagation de Contraintes)](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross/Rendu_CORBELVictor_HARAPOI-GAUDINTemeio/picross_phase3.py)
+- [Analyse et benchmarks](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Solveur_Picross/Rendu_CORBELVictor_HARAPOI-GAUDINTemeio/benchmark_phase3.py)
+  
 ### [R2.01](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java)
 
-Tous mes TP et TD de Java au cours du deuxième semestre.
+Tous les TP et TD de Java réalisés au cours du deuxième semestre.

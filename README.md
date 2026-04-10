@@ -21,14 +21,14 @@ Automatisation du sokoban de la SAÉ 1.01 :
 - [Version 1](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/sokoban/sokoban_auto/v1)
 - [Version 2](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/sokoban/sokoban_auto/v2)
 
-### [SAÉ 1.04 Création d'une base de données](https://github.com/viclbrc/BUT_Info/tree/main/bdd)
+### [SAÉ 1.04 Création d'une base de données](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
 
 Création d'une base de données à partir des consignes suivantes :
 
 [Étape 1](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
 
 
-### [SAÉ 1.05 Recueil des besoins](https://github.com/viclbrc/BUT_Info/tree/main/recueil_des_besoins)
+### [SAÉ 1.05 Recueil des besoins](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/recueil_des_besoins)
 
 Réalisation d'un site internet responsive (groupe de 3) sur un pays. (Égypte)
 
@@ -44,7 +44,7 @@ Outils utilisés :
 - HTML
 - CSS
 
-### [SAÉ 2.02 Exploration algorithmique d'un projet](https://github.com/viclbrc/BUT_Info/tree/main/exploration_algo)
+### [SAÉ 2.02 Exploration algorithmique d'un projet](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo)
 
 #### [Étape 1 : Problème du cavalier](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/exploration_algo/Probl%C3%A8me_du_cavalier)
 

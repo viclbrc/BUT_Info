@@ -3,7 +3,7 @@
 ## BUT 1
 
 
-### [SAÉ 1.01 Implémentation (sokoban)](https://github.com/viclbrc/BUT_Info/tree/main/sokoban)
+### [SAÉ 1.01 Implémentation (sokoban)](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/sokoban)
 
 Réalisation d'un jeu en langage C : le Sokoban.
 

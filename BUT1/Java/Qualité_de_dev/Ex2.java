@@ -1,12 +1,7 @@
 public class Ex2 {
 
-    public static void main(String[] args) {
-        try {
-            int resultat = moyenne(args);
-            System.out.println("Moyenne = " + resultat);
-        } catch (MonException e) {
-            System.out.println(e);
-        }
+    public static void main(String[] args) throws MonException {
+            System.out.println("Moyenne = " + moyenne(args));
     }
 
     static int moyenne(String[] valeurs) throws MonException {

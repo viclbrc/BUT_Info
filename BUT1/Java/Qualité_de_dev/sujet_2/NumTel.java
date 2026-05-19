@@ -47,11 +47,11 @@ public class NumTel {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (this == other) {
+    public boolean equals(Object autre) {
+        if (this == autre) {
             return true;
         }
-        if (!(other instanceof NumTel numTel)) {
+        if (!(autre instanceof NumTel numTel)) {
             return false;
         }
         return Objects.equals(valeur, numTel.valeur);

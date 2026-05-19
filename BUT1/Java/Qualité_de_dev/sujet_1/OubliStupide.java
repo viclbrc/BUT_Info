@@ -1,3 +1,4 @@
+package sujet_1;
 public class OubliStupide { 
     public static void main(String[] args) { 
         try {

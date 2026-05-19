@@ -1,3 +1,4 @@
+package sujet_1;
 import java.util.Scanner;
 
 public class EssaiException {

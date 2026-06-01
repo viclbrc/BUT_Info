@@ -204,4 +204,20 @@ class Seance {
             affecterFilm(f);
         }
     }
+
+    private void enleverFilm() {
+        this.monFilm = null;
+    }
+
+    public void enleverProgrammer(Film f) {
+        if (monFilm == null) {
+            System.out.println("Aucun film n'est programmé pour cette séance.");
+            return;
+        } else if (!monFilm.equals(f)) {
+            System.out.println("Le film à enlever ne correspond pas au film programmé.");
+            return;
+        } else {
+            enleverFilm();
+        }
+    }
 }

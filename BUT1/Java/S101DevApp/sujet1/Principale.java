@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Principale {
     public static void main(String[] args) {
@@ -303,8 +304,8 @@ class Jouer {
             System.out.println("Le film ne peut pas être vide.");
         } else if (a == null) {
             System.out.println("L'acteur ne peut pas être vide.");
-        } else if {
-            //
+        } else if (!contientCasting(f, a)) {
+            System.out.println("Le rôle n'est pas dans le casting.");
         }
     }
 

@@ -59,7 +59,7 @@ class Commercial {
         }
     }
 
-    public void addZone(ZoneGeographique zone) {
+    private void addZone(ZoneGeographique zone) {
         zones.add(zone);
     }
 
@@ -75,7 +75,7 @@ class Commercial {
         }
     }
 
-    public void delZone(ZoneGeographique zone) {
+    private void delZone(ZoneGeographique zone) {
         zones.remove(zone);
     }
 }
@@ -124,7 +124,7 @@ class ZoneGeographique {
         }
     }
 
-    public void addClient(Client client) {
+    private void addClient(Client client) {
         clients.add(client);
     }
 
@@ -138,7 +138,7 @@ class ZoneGeographique {
         }
     }
 
-    public void delClient(Client client) {
+    private void delClient(Client client) {
         clients.remove(client);
     }
 }

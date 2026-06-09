@@ -166,11 +166,11 @@ class Vol{
                 + "]");
     }
 
-    public void addPassager(Personne passager) {
+    private void addPassager(Personne passager) {
         passagers.add(passager);
     }
 
-    public void delPassager(Personne passager) {
+    private void delPassager(Personne passager) {
         passagers.remove(passager);
     }
 

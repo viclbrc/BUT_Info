@@ -185,11 +185,11 @@ class Réservation{
         System.out.println("Réservation [dateR=" + dateR + ", restaurant=" + restaurant + ", clients=" + clients + "]");
     }
 
-    public void addRestaurant(Restaurant r) {
+    private void addRestaurant(Restaurant r) {
         restaurant.add(r);
     }
 
-    public void delRestaurant(Restaurant r) {
+    private void delRestaurant(Restaurant r) {
         restaurant.remove(r);
     }
 
@@ -215,11 +215,11 @@ class Réservation{
         }
     }
 
-    public void addClient(Client c) {
+    private void addClient(Client c) {
         clients.add(c);
     }
 
-    public void delClient(Client c) {
+    private void delClient(Client c) {
         clients.remove(c);
     }
 
@@ -280,11 +280,11 @@ class Client{
         System.out.println("Client [nom=" + nom + ", reservations=" + reservations + "]");
     }
 
-    public void addReservation(Réservation r) {
+    private void addReservation(Réservation r) {
         reservations.add(r);
     }
 
-    public void delReservation(Réservation r) {
+    private void delReservation(Réservation r) {
         reservations.remove(r);
     }
 

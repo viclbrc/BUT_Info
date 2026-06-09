@@ -101,7 +101,7 @@ class Universite {
         } else if (!diplome.containsKey(etudiant)) {
             System.out.println("L'étudiant " + etudiant + " n'est pas inscrit.");
         } else if (!(diplome.size() > 1)) {
-            System.out.println("Il doit rester au moins un enseignant dans l'université.");
+            System.out.println("Il doit rester au moins un étudiant dans l'université.");
         } else {
             delEtudiant(etudiant);
         }

@@ -71,3 +71,23 @@ Les différents programmes sont :
 ### [R2.01](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java)
 
 Tous les TP et TD de Java réalisés au cours du deuxième semestre.
+
+### [SAÉ 2.01 Développement d'une application](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp)
+
+- [Sujet 1 : Cours sur traduction UML - Java](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet1)
+- [Sujet 2 : Diagrammes d'activité](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet2)
+- [Sujet 3 : SAÉ à rendre](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet3)
+↳ Création d'un application de vente de billets avec JavaFX (Eclipse) et SceneBuilder.
+
+### [SAÉ 2.03 Installation de services réseau](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/installation_reseau)
+
+
+### [SAÉ 2.04 Exploitation d'une base de données](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd/exploitation_bdd)
+- Script de création d'une base de données en SQL.
+- Peuplement de cette base de données en exportant un CSV.
+- Analyse statistique en Python de cette base de données.
+
+### [SAÉ 2.06 Travail d'équipe](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/travail_equipe)
+Imagination d'un événement de Team Building, avec flyer et teaser pour le promouvoir.
+
+### [Portfolio personnel](https://viclbrc.github.io/portfolio)

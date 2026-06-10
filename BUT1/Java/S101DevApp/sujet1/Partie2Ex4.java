@@ -98,7 +98,7 @@ class Universite {
     public void supprimerEtudiant(Etudiant etudiant) {
         if (etudiant == null) {
             System.out.println("L'étudiant ne peut pas être null.");
-        } else if (!diplome.containsKey(etudiant)) {
+        } else if (!etudiants.contains(etudiant)) {
             System.out.println("L'étudiant " + etudiant + " n'est pas inscrit.");
         } else if (!(diplome.size() > 1)) {
             System.out.println("Il doit rester au moins un étudiant dans l'université.");

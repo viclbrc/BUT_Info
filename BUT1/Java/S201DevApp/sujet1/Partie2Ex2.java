@@ -1,3 +1,4 @@
+package BUT1.Java.S201DevApp.sujet1;
 import java.util.Collection;
 
 public class Partie2Ex2 {

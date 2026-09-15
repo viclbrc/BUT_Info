@@ -1,0 +1,7 @@
+Q1) #! /usr/bin/php -> chemin de l'interpréteur = which php
+shebang
+chmod +x ./nom.php
+
+Q2) q2.php
+
+Q3) 

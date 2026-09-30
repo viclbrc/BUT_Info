@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .monStyle1 {color: blue;}
+        .monStyle2 {background-color: yellow;}
+    </style>
+</head>
+<body>
+    <header class="monStyle1 monStyle2">
+        <p>Texte à remplacer</p>
+        <p>Texte à remplacer</p>
+    </header>
+    <script>
+        const header = document.querySelector('header');
+        const txt1 = header.querySelector('p:first-child');
+        txt1.textContent = header.classList[0];
+        const txt2 = header.querySelector('p:last-child');
+        txt2.textContent = header.classList[1];
+    </script>
+</body>
+</html>

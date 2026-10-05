@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+html {
+    font-family: 'Google Sans Flex', sans-serif;
+    font-size: 16px;
+    color: #d9d9d9;
+}
+
+header {
+    text-align: center;
+    margin: 20px;
+}
+
+main {
+    margin: 10px;
+}
+
+body {
+    background-color: #222223;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    color: #d9d9d9;
+    margin: 10px;
+}
+
+input, select {
+    font-family: 'Google Sans Flex', sans-serif;
+    margin: 10px;
+    background-color: #000000;
+    border: 2px solid #4d4d4d;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #4d4d4d;
+    color: #d9d9d9;
+    min-width: 200px;
+    min-height: 30px;
+}
+
+form {
+    margin: 20px;
+}

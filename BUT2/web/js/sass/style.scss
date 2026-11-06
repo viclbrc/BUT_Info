@@ -1,0 +1,18 @@
+$var: red;
+
+h1 {
+  color: $var;
+}
+
+a {
+    color: blue;
+    &:link {
+        color: green;
+    }
+    &:visited {
+        color: purple;
+    }
+    &:hover {
+        color: yellow;
+    }
+}

@@ -1,6 +1,6 @@
 # Tous les projets des 3 années de BUT Informatique
 
-🌐 **[viclbrc.github.io](https://viclbrc.github.io)**
+### 🌐 [viclbrc.github.io](https://viclbrc.github.io)
 
 ## Technologies utilisées
 

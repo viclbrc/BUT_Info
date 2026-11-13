@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "sass:color";
 
 $coul-primaire: #ade;
 $coul-secondaire: blue;
@@ -122,10 +123,36 @@ header, section {
     box-shadow: $arg1 (-$arg1) $arg2 $colP;
 }
 
+%marge {
+    margin: 5px 10px;
+}
+
 img {
+    @extend %marge;
+    border: 1px solid black;
     @include ombre();
 }
 
 h1 {
     @include ombre(10px, 3px);
+    @extend %marge;
+    $col: rgba(115, 255, 255, 0.8);
+    $colModif: color.scale($col, $red: -70%, $green: -60%, $blue: -50%);
+    background-color: $colModif;
+    $colBorder: color.change($col, $red: 0, $alpha: 1);
+    border-color: $colBorder;
+}
+
+@mixin coulTxtFond($color) {
+    @if (color.channel($color, "lightness", hsl) > 50%) {
+    color: $color;
+        background-color: color.scale($color, $lightness: -60%);
+    } @else {
+        background-color: color.scale($color, $lightness: 60%);
+    }
+}
+
+h2, h3 {
+    padding-left: 1em;
+    @include coulTxtFond($colP);
 }

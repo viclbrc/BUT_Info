@@ -1,16 +1,92 @@
-h1 {
-  color: red;
+@charset "UTF-8";
+body {
+  font-family: calibri, arial, sans-serif;
+  min-width: 80em;
 }
 
-a {
-  color: blue;
+header,
+section {
+  padding: 2%;
+  min-height: 54em;
 }
+
+header {
+  width: 15%;
+  background-color: #ade;
+}
+
+section {
+  width: 70%;
+}
+
+/*----------- LIENS - Référence au parent -----------*/
 a:link {
-  color: green;
+  color: blue;
 }
 a:visited {
   color: purple;
 }
 a:hover {
-  color: yellow;
+  color: #ade;
+}
+
+/*----------- Interpolation de variables -----------*/
+h3 {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+@media screen and (max-width: 960px) {
+  h3 {
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+}
+@media screen and (max-width: 600px) {
+  h3 {
+    font-size: 0.6em;
+    font-style: italic;
+  }
+}
+
+main {
+  margin: 40px 20px;
+}
+main footer, main article {
+  margin: 10px 5px;
+}
+main p {
+  margin: 4px 5px;
+}
+
+.bouton, figure, h1 {
+  border-radius: 10px 0;
+  box-shadow: 5px 2px #000000;
+}
+
+figure, h1 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+img, footer {
+  border: 2px solid #ade;
+  margin-top: 5px;
+  margin-right: 10px;
+  float: right;
+}
+
+header, section {
+  border: 2px solid #ade;
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+
+img {
+  box-shadow: 10px -10px 5px #ade;
+}
+
+h1 {
+  box-shadow: 10px -10px 3px #ade;
 }/*# sourceMappingURL=style.css.map */

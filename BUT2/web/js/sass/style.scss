@@ -1,18 +1,131 @@
-$var: red;
+@use "sass:list";
 
-h1 {
-  color: $var;
+$coul-primaire: #ade;
+$coul-secondaire: blue;
+$coul-tertiaire: rgb(27,108,136);
+$marge-int: 2%;
+$polices: calibri, arial, sans-serif; 
+
+body {
+    font-family: $polices;
+    min-width: 80em;
 }
 
+header,
+section {
+    padding: $marge-int;
+    min-height: 54em;
+}
+
+header {
+    width: 15%;
+    background-color: $coul-primaire;
+}
+
+section {
+    width: 70%;
+}
+
+/*----------- LIENS - Référence au parent -----------*/
 a {
-    color: blue;
     &:link {
-        color: green;
+        color: $coul-secondaire;
     }
+
     &:visited {
         color: purple;
     }
+
     &:hover {
-        color: yellow;
+        color: $coul-primaire;
     }
+}
+
+
+/*----------- Interpolation de variables -----------*/
+$tablette: "screen and (max-width: 960px)";
+$mobile: "screen and (max-width: 600px)";
+
+h3 {
+    font: {
+        variant: small-caps;
+        weight: bold;  
+    }
+
+    @media #{$tablette} {
+        font: {
+            size: 0.8em;
+            weight: normal;
+        }
+    }
+
+    @media #{$mobile} {
+        font: {
+            size: 0.6em;
+            style: italic;
+        }
+    }
+}
+
+
+$GdeMg: 40px, 20px;
+$PteMg: 10px, 5px;
+$Mg: list.join($GdeMg, $PteMg);
+$pos: list.index($Mg, 20px);
+$val:list.append($Mg, $pos);
+$long: list.length($Mg);
+
+main {
+    margin: list.nth($Mg, 1) list.nth($Mg, 2);
+    
+    footer, article {
+        margin: list.nth($Mg, 3) list.nth($Mg, 4);
+    }
+
+    p {
+        margin: $long+px list.nth($Mg, 4);
+    }
+}
+
+.bouton {
+    border-radius: 10px 0;
+    box-shadow: 5px 2px #000000;
+}
+
+figure, h1 {
+    @extend .bouton;
+    margin: {
+        left: auto;
+        right: auto;
+    }
+    width: 50%;
+}
+
+$colP: #ade;
+
+@mixin posit-f($arg) {
+    border: 2px solid $colP;
+    margin-top: 5px;
+    margin-#{$arg}: 10px;
+    float: $arg;
+}
+
+img, footer {
+    @include posit-f(right);
+}
+
+header, section {
+    @include posit-f(left);
+}
+
+@mixin ombre($arg1: 10px, $arg2: 5px) {
+    box-shadow: $arg1 (-$arg1) $arg2 $colP;
+}
+
+img {
+    @include ombre();
+}
+
+h1 {
+    @include ombre(10px, 3px);
 }

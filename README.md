@@ -1,5 +1,11 @@
 # Tous les projets des 3 années de BUT Informatique
 
+🌐 **[viclbrc.github.io](https://viclbrc.github.io)**
+
+## Technologies utilisées
+
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white) ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=mysql&logoColor=white) ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white) ![Bash](https://img.shields.io/badge/Bash-121011?style=flat-square&logo=gnubash&logoColor=white)
+
 ## BUT 1
 
 ### [SAÉ 1.01 Implémentation (sokoban)](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/sokoban)
@@ -32,7 +38,7 @@ Le projet comprend :
 
 Création d'une base de données à partir des consignes suivantes :
 
-[Sujet](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
+[Étape 1](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd)
 
 ### [SAÉ 1.05 Recueil des besoins](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/recueil_des_besoins)
 
@@ -56,11 +62,11 @@ Tous les TP et TD de Java réalisés au cours du deuxième semestre.
 
 Comprend également des travaux de [qualité de développement](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/Qualité_de_dev) sur les exceptions et la validation de données.
 
-### [SAÉ 2.01 Développement d'une application](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S201DevApp)
+### [SAÉ 2.01 Développement d'une application](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp)
 
-- [Sujet 1 : Cours sur traduction UML - Java](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S201DevApp/sujet1)
-- [Sujet 2 : Diagrammes d'activité](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S201DevApp/sujet2)
-- [Sujet 3 : SAÉ à rendre](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S201DevApp/sujet3)
+- [Sujet 1 : Cours sur traduction UML - Java](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet1)
+- [Sujet 2 : Diagrammes d'activité](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet2)
+- [Sujet 3 : SAÉ à rendre](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/Java/S101DevApp/sujet3)
 
 Création d'une application de vente de billets avec JavaFX (Eclipse) et SceneBuilder.
 
@@ -90,8 +96,6 @@ Les différents programmes sont :
 
 ### [SAÉ 2.03 Installation de services réseau](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/installation_reseau)
 
-- Compte-rendu / questions et manipulation d'un environnement réel sur une machine virtuelle.
-
 ### [SAÉ 2.04 Exploitation d'une base de données](https://github.com/viclbrc/BUT_Info/tree/main/BUT1/bdd/exploitation_bdd)
 
 - Script de création d'une base de données en SQL.
@@ -109,7 +113,7 @@ Imagination d'un événement de Team Building, avec flyer et teaser pour le prom
 ### [R3.01 Développement Web](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/web)
 
 Travaux pratiques de développement Web :
-- [PHP](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/web/php)
+- [PHP et accès à une base de données](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/web/php)
 - [JavaScript](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/web/js)
 - [SASS et CSS](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/web/js/sass)
 
@@ -128,11 +132,7 @@ Comprend :
 ### [R3.04 Qualité de développement](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/dev/qualité_dev)
 
 Dossier consacré à la qualité de développement.
-Vide pour le moment.
 
 ### [R3.05 Systèmes](https://github.com/viclbrc/BUT_Info/tree/main/BUT2/systeme)
 
-Travaux pratiques en langage C sur :
-- La création et la gestion de répertoires.
-- Les processus et les signaux.
-- La communication entre processus.
+Travaux pratiques en langage C sur les processus, les signaux et la gestion des répertoires.
